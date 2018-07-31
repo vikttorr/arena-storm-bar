@@ -12,7 +12,7 @@
     "react-dom": "16.4.1",
     "react-responsive-spritesheet": "2.3.9",
     "react-scripts": "1.1.4",
-    "react-spring": "5.4.0",
+    "react-spring": "5.5.1",
     "request": "2.87.0",
     "request-promise": "4.2.2",
     "rxjs": "6.2.2",
