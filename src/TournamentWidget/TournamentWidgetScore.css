@@ -1,0 +1,125 @@
+.tournament-widget-score {
+  /* position: absolute; */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+  /* overflow: hidden; */
+}
+
+.tournament-widget-score__rank {
+  flex: 0 0 auto;
+  width: 100px;
+  height: 100%;
+  position: relative;
+}
+
+.tournament-widget-score__team {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.tournament-widget-score__team-member {
+  height: 50%;
+  display: flex;
+  flex-direction: row;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.tournament-widget-score__team-member:first-child .tournament-widget-score__team-member--name {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.tournament-widget-score__team-member--avatar {
+  height: 100%;
+  width: 50px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.tournament-widget-score__team-member--name {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 600;
+  padding: 10px;
+  opacity: 0.7;
+}
+
+.tournament-widget-score__count {
+  height: 100%;
+  width: 100px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 46px;
+  font-weight: 800;
+  flex: 0 0 auto;
+  position: relative;
+  transition: all 200ms ease;
+}
+
+.tournament-widget-score__count.score-increased {
+  background: rgba(166, 66, 255, 0.1);
+}
+
+.tournament-widget-score__count--value {
+  transform: scale(0.8);
+  transition: all 200ms ease;
+}
+
+.tournament-widget-score__count.score-increased .tournament-widget-score__count--value {
+  transform: scale(1);
+}
+
+.tournament-widget-score__avatar--img {
+  flex: 0 0 auto;
+  height: 50%;
+  width: 100%;
+}
+
+.tournament-widget-score__count--floating-number {
+  font-size: 28px;
+  font-weight: 800;
+  color: #a642ff;
+  position: absolute;
+  text-shadow: rgba(166, 66, 255, 0.5) 0px 0px 20px;
+  top: 50%;
+  z-index: 1000;
+  left: 50%;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+  margin-top: -50px;
+  animation: float-up 1s ease forwards;
+}
+
+.tournament-widget-score__count--floating-number.aniamte {
+  animation: float-up 800ms ease-in-out forwards;
+}
+
+@keyframes float-up {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  20% {
+    opacity: 1;
+    transform: translate3d(0, -10px, 0);
+  }
+  800% {
+    transform: translate3d(0, -50px, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, -80px, 0);
+    opacity: 0;
+  }
+}

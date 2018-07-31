@@ -1,0 +1,148 @@
+.tournament-widget-storm {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
+}
+
+.tournament-widget-storm--meta {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.tournament-widget-storm--meta--title {
+  margin: 0;
+  line-height: 20px;
+  font-size: 23px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.7);
+}
+.tournament-widget-storm--meta--time {
+  margin: 0 10px;
+  font-weight: 900;
+  line-height: 20px;
+  font-size: 26px;
+}
+
+.tournament-widget-storm--storm {
+  margin: auto 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.tournament-widget-storm--storm--icon {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  position: relative;
+}
+.tournament-widget-storm--storm--icon img {
+  margin: auto;
+  zoom: 1.5;
+}
+
+.tournament-widget-storm--storm--bar-container {
+  height: 50px;
+  flex-grow: 1;
+  display: flex;
+}
+
+.tournament-widget-storm--storm--bar {
+  width: 100%;
+  height: 25px;
+  margin: auto 10px;
+  background: #adbccc;
+  border-radius: 5px;
+  position: relative;
+}
+
+.tournament-widget-storm--storm--bar--electricity {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 20%;
+  background: url('./assets/storm-electricity.png');
+  z-index: 2;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  border-radius: 5px 0 0 5px;
+}
+
+.tournament-widget-storm--storm--bar--inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 5px;
+  background: url('./assets/bg.png');
+  background-size: contain;
+  transition: all 300ms;
+  filter: saturate(1.5);
+  z-index: 1;
+}
+.tournament-widget-storm--storm--bar--end-bar {
+  position: absolute;
+  right: -2px;
+  top: -4px;
+  bottom: -4px;
+  width: 4px;
+  border-radius: 3px;
+  background: #6674ff;
+}
+
+.tournament-widget-storm--storm--team {
+  border-radius: 999px;
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  transform: translateX(-50%);
+
+  top: -5px;
+}
+
+.tournament-widget-storm--storm--team--player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-size: contain;
+}
+.tournament-widget-storm--storm--team--player:nth-child(1) {
+  border-radius: 999px;
+  -webkit-clip-path: polygon(100% 0, 0% 100%, 0 0);
+  clip-path: polygon(100% 0, 0% 100%, 0 0);
+  background-color: #ccc;
+}
+.tournament-widget-storm--storm--team--player:nth-child(2) {
+  border-radius: 999px;
+  -webkit-clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+  clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+  background-color: #ccc;
+}
+
+.tournament-widget-storm--storm--team--rank {
+  position: absolute;
+  top: -28px;
+  width: 35px;
+  left: 0;
+  transform: translateX(0%);
+  font-weight: 900;
+  font-size: 26px;
+  display: flex;
+  color: #584563;
+}
+.tournament-widget-storm--storm--team--rank span {
+  margin: 0 auto;
+}

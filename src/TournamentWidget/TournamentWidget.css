@@ -1,0 +1,95 @@
+@import url('https://rsms.me/inter/inter-ui.css');
+
+@font-face {
+  font-family: Fortnite;
+  src: url('./assets/fortnite.otf') format('opentype');
+}
+
+@font-face {
+  font-family: Fortnite;
+  font-weight: bold;
+  src: url('./assets/fortnite.otf') format('opentype');
+}
+
+* {
+  font-family: 'Fortnite', cursive;
+  filter: saturate(1.05);
+}
+
+#root {
+  display: flex;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 600px;
+  height: 200px;
+  background: transparent;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 110px;
+}
+
+.container.dev {
+  background: black;
+}
+
+.tournament-widget {
+  height: 100px;
+  position: relative;
+  flex: 0 0 auto;
+  background: #fff;
+  display: block;
+  z-index: 100;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 0px 0px 5px 5px;
+}
+
+.tournament-widget__bar {
+  height: 4px;
+  width: 100%;
+  transition: all 200ms ease;
+  position: absolute;
+  top: -4px;
+  width: 100%;
+  z-index: 1;
+  border-radius: 5px 5px 0px 0px;
+  box-shadow: 0px 10px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.tournament-widget-logo {
+  /* background: red; */
+  width: 140px;
+  height: 100%;
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 100;
+}
+
+.tournament-widget-logo__img {
+  /* background: blue; */
+  position: absolute;
+  object-fit: contain;
+  height: 200px;
+  width: 260px;
+  top: 50%;
+  left: 0;
+  margin-top: -108px;
+  margin-left: -95px;
+  -webkit-backface-visibility: hidden;
+  z-index: 200;
+  image-rendering: optimizeSpeed; /*                     */
+  image-rendering: -moz-crisp-edges; /* Firefox             */
+  image-rendering: -o-crisp-edges; /* Opera               */
+  image-rendering: -webkit-optimize-contrast; /* Chrome (and Safari) */
+  image-rendering: optimize-contrast; /* CSS3 Proposed       */
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+                */
+}

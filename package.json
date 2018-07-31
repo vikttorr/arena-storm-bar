@@ -1,0 +1,32 @@
+{
+  "name": "tournament-bottom-bar",
+  "version": "0.0.18",
+  "repository": "bebo-rooms/tournament-bottom-bar",
+  "private": true,
+  "homepage": "./",
+  "dependencies": {
+    "bebo-sdk": "git+ssh://git@github.com/bebo/bebo-sdk.git#v2",
+    "classnames": "^2.2.6",
+    "react": "^16.3.2",
+    "react-countdown-now": "^1.3.0",
+    "react-dom": "^16.3.2",
+    "react-responsive-spritesheet": "^2.3.6",
+    "react-scripts": "1.1.4",
+    "react-spring": "^5.3.19",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2",
+    "rxjs": "^6.2.1",
+    "tinycolor2": "^1.4.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "prettier": "prettier --write \"./src/**/*.@(js|css)\""
+  },
+  "devDependencies": {
+    "deploy-script": "https://github.com/bebo-rooms/deploy-script.git",
+    "prettier": "^1.13.7"
+  }
+}
