@@ -32,10 +32,10 @@ if (env === 'dev') {
 }
 
 const UI_STATES = [
-  { id: 'transition', seconds: 60 },
-  { id: 'score', seconds: 120 },
-  { id: 'storm', seconds: 60 },
-  { id: 'stats', seconds: 60 }
+  { id: 'transition', seconds: 10 },
+  { id: 'bar', seconds: 120 }
+  //{ id: 'storm', seconds: 60 },
+  //{ id: 'stats', seconds: 60 }
   //{ id: 'transition', seconds: 1 },
   //{ id: 'promo', seconds: 6, promo_id: 'postmates' },
 
@@ -131,11 +131,7 @@ class Controller {
       .subscribe(this.team);
 
     this.team
-      .pipe(
-        filter(team => team),
-        map(team => team.score),
-        distinctUntilChanged()
-      )
+      .pipe(filter(team => team), map(team => team.score), distinctUntilChanged())
       .subscribe(this.teamScore);
 
     filteredLeaderboard

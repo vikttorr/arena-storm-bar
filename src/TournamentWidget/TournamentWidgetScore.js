@@ -26,7 +26,7 @@ export default class TournamentWidgetScore extends Component {
     el.appendChild(node);
     this.countEl.appendChild(el);
     this.countEl.classList.add('score-increased');
-    el.classList.add('aniamte');
+    el.classList.add('animate');
     const timeout = setTimeout(() => {
       el.remove();
       this.countEl.classList.remove('score-increased');
@@ -43,16 +43,28 @@ export default class TournamentWidgetScore extends Component {
     return (
       <div className="tournament-widget-score">
         <div className="tournament-widget-score__team">
-          {team.map((name, i) => (
-            <div className="tournament-widget-score__team-member" key={`team_member+${i}`}>
+          <div className="tournament-widget-score__team-image-container">
+            {team.map((name, i) => (
               <img
                 alt=""
-                className="tournament-widget-score__team-member--avatar"
+                key={name}
+                className={`tournament-widget-score__team-member--avatar avatar-${team.length}`}
                 src={this.getStreamerProfileImage(name)}
               />
-              <span className="tournament-widget-score__team-member--name">{name}</span>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className="tournament-widget-score__team-name-container">
+            {team.map((name, i) => [
+              <span
+                key={name}
+                className="tournament-widget-score__team-member--name"
+                style={{ maxWidth: `${100 / team.length}%` }}
+              >
+                {name}
+              </span>,
+              team.length - 1 > i ? ' / ' : ''
+            ])}
+          </div>
         </div>
         <span ref={c => (this.countEl = c)} className="tournament-widget-score__count">
           <span className="tournament-widget-score__count--value">{score}</span>

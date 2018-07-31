@@ -17,7 +17,7 @@ class Widget extends Component {
   };
 
   componentDidMount() {
-    controller.uiState.subscribe(uiState => this.setState({ uiState }));
+    controller.uiState.subscribe(uiState => this.setState({ uiState: uiState.id }));
     controller.activeTournament.subscribe(activeTournament => this.setState({ activeTournament }));
     controller.liveViewers.subscribe(liveViewers => this.setState({ liveViewers }));
     controller.teamsAlive.subscribe(teamsAlive => this.setState({ teamsAlive }));
@@ -32,16 +32,21 @@ class Widget extends Component {
 
   render() {
     //console.log('*** state update', { ...this.state });
-    const { uiState, activeTournament, ...rest } = this.state;
+    const { uiState, activeTournament, team, ...rest } = this.state;
 
-    if (!activeTournament) {
+    if (!activeTournament || !team) {
       //if we don't hace an active tournament there is nothing for us to render at all
       return null;
     }
 
     return (
-      <div className={'container'}>
-        <TournamentWidget uiState={uiState} activeTournament={activeTournament} {...rest} />
+      <div className="container">
+        <TournamentWidget
+          state={uiState}
+          activeTournament={activeTournament}
+          team={team}
+          {...rest}
+        />
       </div>
     );
   }

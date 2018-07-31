@@ -6,27 +6,7 @@
   top: 0;
   display: flex;
   flex-direction: column;
-  padding: 5px 10px;
-}
-
-.tournament-widget-storm--meta {
-  margin: 10px 0;
-  display: flex;
-  flex-direction: row;
-}
-
-.tournament-widget-storm--meta--title {
-  margin: 0;
-  line-height: 20px;
-  font-size: 23px;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.7);
-}
-.tournament-widget-storm--meta--time {
-  margin: 0 10px;
-  font-weight: 900;
-  line-height: 20px;
-  font-size: 26px;
+  padding: 0 10px;
 }
 
 .tournament-widget-storm--storm {
@@ -36,29 +16,31 @@
 }
 
 .tournament-widget-storm--storm--icon {
-  margin: 0;
+  margin: auto 0;
   display: flex;
   flex-direction: row;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 25px;
   flex-shrink: 0;
   flex-grow: 0;
   position: relative;
+  object-fit: contain;
 }
 .tournament-widget-storm--storm--icon img {
   margin: auto;
-  zoom: 1.5;
+  zoom: 1;
 }
 
 .tournament-widget-storm--storm--bar-container {
-  height: 50px;
-  flex-grow: 1;
+  height: 100%;
+  margin: auto 0;
+  width: calc(100% - 2 * 45px);
   display: flex;
 }
 
 .tournament-widget-storm--storm--bar {
   width: 100%;
-  height: 25px;
+  height: 15px;
   margin: auto 10px;
   background: #adbccc;
   border-radius: 5px;
@@ -104,45 +86,30 @@
 .tournament-widget-storm--storm--team {
   border-radius: 999px;
   position: absolute;
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   transform: translateX(-50%);
-
+  z-index: 9;
   top: -5px;
-}
-
-.tournament-widget-storm--storm--team--player {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-size: contain;
-}
-.tournament-widget-storm--storm--team--player:nth-child(1) {
   border-radius: 999px;
-  -webkit-clip-path: polygon(100% 0, 0% 100%, 0 0);
-  clip-path: polygon(100% 0, 0% 100%, 0 0);
-  background-color: #ccc;
-}
-.tournament-widget-storm--storm--team--player:nth-child(2) {
-  border-radius: 999px;
-  -webkit-clip-path: polygon(100% 0, 0% 100%, 100% 100%);
-  clip-path: polygon(100% 0, 0% 100%, 100% 100%);
-  background-color: #ccc;
+  background-color: #a642ff;
+  color: #fff;
 }
 
 .tournament-widget-storm--storm--team--rank {
   position: absolute;
-  top: -28px;
-  width: 35px;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 1;
   left: 0;
-  transform: translateX(0%);
   font-weight: 900;
-  font-size: 26px;
+  font-size: 15px;
   display: flex;
-  color: #584563;
+  text-align: center;
+  color: #fff;
 }
 .tournament-widget-storm--storm--team--rank span {
-  margin: 0 auto;
+  margin: auto;
+  display: block;
 }
