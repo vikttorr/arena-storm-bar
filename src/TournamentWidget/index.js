@@ -63,7 +63,7 @@ export default class TournamentWidget extends PureComponent {
 
   renderState = state => {
     if (state === 'transition') {
-      return null;
+      return this.renderBar();
     } else {
       return this.renderBar();
     }

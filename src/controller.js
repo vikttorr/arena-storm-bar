@@ -156,7 +156,7 @@ class Controller {
 
     filteredLeaderboard
       .pipe(
-        map(teams => teams.filter(t => t.state === 'alive').length),
+        map(teams => teams.filter(t => t.state !== 'eliminated').length),
         distinctUntilChanged()
       )
       .subscribe(this.teamsAlive);
