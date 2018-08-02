@@ -39,6 +39,21 @@ class Widget extends Component {
       return null;
     }
 
+    // const testProps = {
+    //   uiState: '',
+    //   activeTournament:{
+    //     image_url: 'https://a.imgdropt.com/image/12fe9d28-1c86-4db4-8572-e232b7ab9178',
+    //     name:'Dev Test'
+    //   },
+    //   team: {
+    //     usernames:['viktorrohlin', 'Ninja'],
+    //     score: 40
+    //   },
+    //   nextStormDate: Date.now() + 1000000,
+    //   totalViewers: 100000,
+    //   teamLeaderBoardRank: 1
+    // }
+
     return (
       <div className="container">
         <TournamentWidget
@@ -46,6 +61,7 @@ class Widget extends Component {
           activeTournament={activeTournament}
           team={team}
           {...rest}
+          // {...testProps}
         />
       </div>
     );

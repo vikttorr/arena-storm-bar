@@ -5,7 +5,7 @@ import CountDown from 'react-countdown-now';
 import './TournamentWidget.css';
 
 import TournamentWidgetScore from './TournamentWidgetScore';
-import TournamentWidgetStorm from './TournamentStorm';
+// import TournamentWidgetStorm from './TournamentStorm';
 
 export default class TournamentWidget extends PureComponent {
   renderBar() {
@@ -13,9 +13,8 @@ export default class TournamentWidget extends PureComponent {
       team,
       nextStormDate,
       activeTournament,
-      teamLeaderBoardRank,
-      totalTeams,
-      teamsAlive
+      // teamsAlive,
+      liveViewers
     } = this.props;
 
     return (
@@ -25,53 +24,49 @@ export default class TournamentWidget extends PureComponent {
           <TournamentWidgetScore team={team.usernames} score={team.score} />
         </div>
         <div className="tournament-widget__center">
-          {nextStormDate !== 'ended' && (
-            <div className="tournament-widget__center__left">STORM IN</div>
-          )}
-          <div className="tournament-widget__center__center">
             <img
               className="tournament-widget__logo"
               src={activeTournament.image_url}
               alt={activeTournament.name}
             />
-          </div>
-          {nextStormDate !== 'ended' && (
-            <div className="tournament-widget__center__right">
+        </div>
+        <div className="tournament-widget__right">
+          <div className='tournament-widget__right--section storm-section'>
+               <span className='tournament-widget__right--section__label'>Storm in</span>
               {nextStormDate ? (
                 <CountDown
                   date={nextStormDate}
                   renderer={({ minutes, seconds, completed }) => {
-                    return completed ? <span>Now!</span> : <span>{`${minutes}:${seconds}`}</span>;
+                    return completed ? <span className='storm-count'>Now!</span> : <span className='storm-count'>{`${minutes}:${seconds}`}</span>;
                   }}
                 />
               ) : (
                 'Soon'
               )}
-            </div>
-          )}
-        </div>
-        <div className="tournament-widget__right">
-          <TournamentWidgetStorm
-            teamRank={teamLeaderBoardRank}
-            totalTeams={totalTeams}
-            teamsAlive={teamsAlive}
-          />
+          </div>
+          <div className='tournament-widget__right--section'>
+              <span className='tournament-widget__right--section__label'>Viewers</span>
+              <span className='tournament-widget__right--section__count'>{numberWithCommas(liveViewers)}</span>
+          </div>
         </div>
       </div>
     );
   }
 
+
   renderState = state => {
-    if (state === 'transition') {
-      return null;
-    } else {
-      return this.renderBar();
-    }
+    return this.renderBar();
   };
 
   render() {
     const { state } = this.props;
-
     return this.renderState(state);
   }
 }
+
+
+const numberWithCommas = x => {
+  var parts = x.toString().split('.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return parts.join('.');
+};
