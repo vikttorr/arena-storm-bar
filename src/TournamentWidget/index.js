@@ -36,12 +36,17 @@ export default class TournamentWidget extends PureComponent {
               {nextStormDate ? (
                 <CountDown
                   date={nextStormDate}
-                  renderer={({ minutes, seconds, completed }) => {
+                  renderer={({ hours, minutes, seconds, completed }) => {
+                    hours = parseInt(hours, 10);
+                    if (hours) {
+                      minutes = `${hours * 60 + parseInt(minutes, 10)}`;
+                      minutes = minutes.length < 2 ? `0${minutes}` : minutes;
+                    }
                     return completed ? <span className='storm-count'>Now!</span> : <span className='storm-count'>{`${minutes}:${seconds}`}</span>;
                   }}
                 />
               ) : (
-                'Soon'
+                <span className='storm-count'>Soon</span>
               )}
           </div>
           <div className='tournament-widget__right--section'>
