@@ -24,40 +24,46 @@ export default class TournamentWidget extends PureComponent {
           <TournamentWidgetScore team={team.usernames} score={team.score} />
         </div>
         <div className="tournament-widget__center">
-            <img
-              className="tournament-widget__logo"
-              src={activeTournament.image_url}
-              alt={activeTournament.name}
-            />
+          <img
+            className="tournament-widget__logo"
+            src={activeTournament.image_url}
+            alt={activeTournament.name}
+          />
         </div>
         <div className="tournament-widget__right">
-          <div className='tournament-widget__right--section storm-section'>
-               <span className='tournament-widget__right--section__label'>Storm in</span>
-              {nextStormDate ? (
-                <CountDown
-                  date={nextStormDate}
-                  renderer={({ hours, minutes, seconds, completed }) => {
-                    hours = parseInt(hours, 10);
-                    if (hours) {
-                      minutes = `${hours * 60 + parseInt(minutes, 10)}`;
-                      minutes = minutes.length < 2 ? `0${minutes}` : minutes;
-                    }
-                    return completed ? <span className='storm-count'>Now!</span> : <span className='storm-count'>{`${minutes}:${seconds}`}</span>;
-                  }}
-                />
-              ) : (
-                <span className='storm-count'>Soon</span>
-              )}
+          <div className="tournament-widget__right--section storm-section">
+            <span className="tournament-widget__right--section__label">Storm in</span>
+            {nextStormDate ? (
+              <CountDown
+                restartOnDateChangeAfterComplete
+                date={nextStormDate}
+                renderer={({ hours, minutes, seconds, completed }) => {
+                  hours = parseInt(hours, 10);
+                  if (hours) {
+                    minutes = `${hours * 60 + parseInt(minutes, 10)}`;
+                    minutes = minutes.length < 2 ? `0${minutes}` : minutes;
+                  }
+                  return completed ? (
+                    <span className="storm-count">Now!</span>
+                  ) : (
+                    <span className="storm-count">{`${minutes}:${seconds}`}</span>
+                  );
+                }}
+              />
+            ) : (
+              <span className="storm-count">Soon</span>
+            )}
           </div>
-          <div className='tournament-widget__right--section'>
-              <span className='tournament-widget__right--section__label'>Viewers</span>
-              <span className='tournament-widget__right--section__count'>{numberWithCommas(liveViewers)}</span>
+          <div className="tournament-widget__right--section">
+            <span className="tournament-widget__right--section__label">Viewers</span>
+            <span className="tournament-widget__right--section__count">
+              {numberWithCommas(liveViewers)}
+            </span>
           </div>
         </div>
       </div>
     );
   }
-
 
   renderState = state => {
     return this.renderBar();
@@ -68,7 +74,6 @@ export default class TournamentWidget extends PureComponent {
     return this.renderState(state);
   }
 }
-
 
 const numberWithCommas = x => {
   var parts = x.toString().split('.');

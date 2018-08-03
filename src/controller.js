@@ -20,7 +20,7 @@ if (window_location.indexOf('renegade') > -1) {
 let feeds_url = '';
 
 if (env === 'dev') {
-  feeds_url = 'https://feeds.bebo-dev.com';
+  feeds_url = 'https://costello.bebo-dev.com:8650';
 } else if (env === 'prod') {
   feeds_url = 'https://feeds.bebo.com';
 } else if (env === 'renegade') {

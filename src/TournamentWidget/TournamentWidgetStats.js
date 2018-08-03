@@ -11,6 +11,7 @@ export default class TournamentWidgetStats extends Component {
         label: 'Next Storm',
         value: nextStormDate ? (
           <CountDown
+            restartOnDateChangeAfterComplete
             date={nextStormDate}
             renderer={({ minutes, seconds, completed }) => {
               return completed ? <span>Now!</span> : <span>{`${minutes}:${seconds}`}</span>;
@@ -35,7 +36,9 @@ export default class TournamentWidgetStats extends Component {
 
     return (
       <ul className="tournament-widget-stats">
-        {stats.map(stat => <TournamentWidgetStatItem key={stat.id} {...stat} />)}
+        {stats.map(stat => (
+          <TournamentWidgetStatItem key={stat.id} {...stat} />
+        ))}
       </ul>
     );
   }
