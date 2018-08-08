@@ -1,0 +1,18 @@
+.arena-bar-logo {
+  width: 160px;
+  display: flex;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.arena-bar-logo__img {
+  width:160px;
+  height: 160px;
+  display: block;
+  /* background: teal; */
+  position: absolute;
+  bottom: 0;
+  border:none;
+  outline: none;
+  object-fit: contain;
+}

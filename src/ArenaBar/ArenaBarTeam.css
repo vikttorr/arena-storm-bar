@@ -1,0 +1,93 @@
+.arena-bar-team {
+  background:;
+  display: flex;
+  flex: 1 1 auto;
+  border-left: 1px solid rgba(0,0,0,.1);
+  display: flex;
+  flex-direction: row;
+  background: #FFF;
+}
+
+.arena-bar-team__rank {
+  width:65px;
+  flex: 0 0 auto;
+  background:#5c4374;
+  color:#FFF;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arena-bar-team__name {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 15px;
+  font-weight: 600;
+  font-size: 20px;
+  overflow: hidden;
+}
+
+.arena-bar-team__name--inner {
+  width: 100%;
+  display: inline;
+  flex: 1;
+  white-space: nowrap;
+  max-width:280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.arena-bar-team__name--item {
+  display: inline;
+}
+
+.arena-bar-team__name--seperator {
+  display: inline-block;
+  margin: 0 5px;
+  opacity: 0.6;
+}
+
+.arena-bar-team__avatar {
+  position: relative;  
+  width: 65px;
+  flex: 0 0 auto;
+}
+
+
+.arena-bar-team__avatar--img {
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+}
+
+.arena-bar-team__score {
+  flex:  0 0 auto;
+  width: 65px;
+  color:#000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+
+
+.avatars-2 .arena-bar-team__avatar--img:last-child {
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+}
+
+.avatars-3 .arena-bar-team__avatar--img:nth-child(2)  {
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
+}
+
+.avatars-3 .arena-bar-team__avatar--img:nth-child(3)  {
+  clip-path:polygon(50% 0, 0 100%, 0 0);
+}

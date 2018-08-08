@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import controller from './controller.js';
 import TournamentWidget from './TournamentWidget';
+import ArenaBar from './ArenaBar';
 
 class Widget extends Component {
   state = {
@@ -34,37 +35,42 @@ class Widget extends Component {
     //console.log('*** state update', { ...this.state });
     const { uiState, activeTournament, team, ...rest } = this.state;
 
-    if (!activeTournament || !team) {
-      //if we don't hace an active tournament there is nothing for us to render at all
-      return null;
-    }
-
-    // const testProps = {
-    //   uiState: '',
-    //   activeTournament:{
-    //     image_url: 'https://a.imgdropt.com/image/12fe9d28-1c86-4db4-8572-e232b7ab9178',
-    //     name:'Dev Test'
-    //   },
-    //   team: {
-    //     usernames:['viktorrohlin', 'Ninja'],
-    //     score: 40
-    //   },
-    //   nextStormDate: Date.now() + 1000000,
-    //   totalViewers: 100000,
-    //   teamLeaderBoardRank: 1
+    // if (!activeTournament || !team) {
+    //   //if we don't hace an active tournament there is nothing for us to render at all
+    //   return null;
     // }
 
-    return (
-      <div className="container">
-        <TournamentWidget
-          state={uiState}
-          activeTournament={activeTournament}
-          team={team}
-          {...rest}
-          // {...testProps}
-        />
-      </div>
-    );
+
+    const dummyTeam = {
+        id: 'test_1',
+        stream_id: 'e3db336d10214657bab8983155715199',
+        tournament_id: '7738854e-c008-4156-a461-6f8a04f140a3',
+        usernames: ['professorbroman', 'drdisrespectlive'],
+        player_stream_ids: ['e3db336d10214657bab8983155715199'],
+        name: "",
+        code: '416874',
+        created_dttm: '2018-07-28T09:34:21.070Z',
+        updated_dttm: '2018-07-28T09:34:21.070Z',
+        deleted_dttm: null,
+        state: 'storm',
+        score: 25
+      }
+
+    return <ArenaBar
+      team={dummyTeam}
+    />
+
+    // return (
+    //   <div className="container">
+    //     <TournamentWidget
+    //       state={uiState}
+    //       activeTournament={activeTournament}
+    //       team={team}
+    //       {...rest}
+    //       // {...testProps}
+    //     />
+    //   </div>
+    // );
   }
 }
 

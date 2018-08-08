@@ -1,0 +1,65 @@
+.arena-bar-storm {
+  height: 10px;
+  background:rgba(255,255,255,0.8);
+  width: 1180px;
+  position: relative;
+  z-index: 5;
+}
+
+.arena-bar-storm__team {
+  position: absolute;
+  display: block;
+  width:20px;
+  height: 20px;
+  background: #5C4374;
+  left: 50%;
+  top:-10px;
+  margin-left:-10px;
+  z-index: 5;
+}
+
+.arena-bar-storm__progress {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  /* overflow: hidden; */
+}
+
+.arena-bar-storm__progress--elim,
+.arena-bar-storm__progress--storm {
+  width: 0%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  left:0;
+  top:0;
+}
+
+.arena-bar-storm__progress--storm {
+  z-index: 1;
+  box-shadow: 0px 0px 21px #8C5AF6;
+  background: repeating-linear-gradient(
+    45deg,
+    #8840B0,
+    #8840B0 4px,
+    #A833E9 4px,
+    #A833E9 8px
+  );
+  opacity: 0.7;  
+}
+
+.arena-bar-storm__progress--elim {
+  background: #894FC8;
+   background: repeating-linear-gradient(
+    45deg,
+    #756784,
+    #756784 4px,
+    #8c7e9a 4px,
+    #8c7e9a 8px
+  ); 
+  z-index: 2;
+  /* box-shadow: 0px 0px 21px #8C5AF6; */
+}
+
+

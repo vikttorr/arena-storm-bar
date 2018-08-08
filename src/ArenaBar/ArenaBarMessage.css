@@ -1,0 +1,81 @@
+.arena-bar-message {
+  position: absolute;
+  bottom: 65px;
+  left: 160px;
+  background: #894FC8;
+  height: 55px;
+  width: 100%;
+  max-width: 519px;
+  border-radius: 0 4px 0 0;
+  z-index:-1;
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+}
+
+.arena-bar-messag
+
+.arena-bar-message__content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  color:#FFF;
+  font-size: 20px;
+  font-weight: 7600
+}
+
+
+.arena-bar-message.storm .arena-bar-message__content--state {
+    background: repeating-linear-gradient( 45deg, #894FC8, #894FC8 4px, #A833E9 4px, #A833E9 8px);
+}
+
+.arena-bar-message.eliminated {
+  background: #7e718c;
+}
+
+.arena-bar-message.eliminated .arena-bar-message__content--state {
+  
+  background: rgba(0,0,0,.1);  
+}
+
+.arena-bar-message__content--state {
+   background: rgba(0,0,0,.1);
+   height: 100%;
+   flex: 0 0 auto;
+   padding: 0 25px;
+   padding-right: 35px;
+   display: flex;
+   align-items: center;
+   flex-direction: row;
+   justify-content: center;
+    background: repeating-linear-gradient( 45deg, #894FC8, #894FC8 4px, #A833E9 4px, #A833E9 8px);
+}
+
+.arena-bar-message__content--state__text {
+  font-size: 30px;
+  color:#FFF;
+  font-family: 'Fortnite';
+  line-height: 0.8;
+  flex: 0 0 auto;
+  padding-top:5px;
+}
+
+.arena-bar-message__content--state__icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.arena-bar-message__content--state__icon.skull {
+  width:25px;
+  height: 25px;
+}
+
+
+.arena-bar-message__content--rotating-msg {
+  flex: 1;
+  /* background: orange; */
+  text-align: center;
+  font-weight: 700;
+}
