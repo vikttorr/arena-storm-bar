@@ -45,12 +45,20 @@ export default class ArenaBar extends Component {
           <CountDown
             restartOnDateChangeAfterComplete
             date={nextStormDate}
-            renderer={({ minutes, seconds, completed }) => {
-             const stats = [];
-             if(nextStormDate !== 'ended'){
-               stats.push({label: 'Next Storm', value: completed? 'Now' : `${minutes}:${seconds}`});
-             }
-             stats.push({ label: 'Live Viewers', value: liveViewers })
+            renderer={({ hours, minutes, seconds, completed }) => {
+              const stats = [];
+              if (nextStormDate !== 'ended') {
+                hours = parseInt(hours, 10);
+                if (hours) {
+                  minutes = `${hours * 60 + parseInt(minutes, 10)}`;
+                  minutes = minutes.length < 2 ? `0${minutes}` : minutes;
+                }
+                stats.push({
+                  label: 'Next Storm',
+                  value: completed ? 'Now' : `${minutes}:${seconds}`
+                });
+              }
+              stats.push({ label: 'Live Viewers', value: liveViewers });
               return <ArenaBarStats stats={stats} />;
             }}
           />
