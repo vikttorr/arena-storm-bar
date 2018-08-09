@@ -78,8 +78,6 @@ class Controller {
     this.totalTeams = new BehaviorSubject(0);
     this.nextStormDate = new BehaviorSubject(Date.now());
     this.team = new BehaviorSubject(null);
-    this.teamLeaderBoardRank = new BehaviorSubject();
-    this.teamScore = new BehaviorSubject(0);
     this.uiState = new BehaviorSubject({ id: 'transition', seconds: 0 });
 
     //internal
@@ -124,28 +122,17 @@ class Controller {
     const filteredLeaderboard = this.leaderBoard.pipe(filter(teams => Array.isArray(teams)));
     filteredLeaderboard
       .pipe(
-        map(teams => teams.find(t => t.usernames.indexOf(this.user_name) > -1 || null)),
+        map(teams => {
+          const teamIndex = teams.findIndex(t => t.usernames.indexOf(this.user_name) > -1 || null);
+          if (teamIndex === -1) {
+            return null;
+          }
+          return { ...teams[teamIndex], rank: teamIndex + 1 };
+        }),
         filter(team => team),
         distinctUntilChanged()
       )
       .subscribe(this.team);
-
-    this.team
-      .pipe(filter(team => team), map(team => team.score), distinctUntilChanged())
-      .subscribe(this.teamScore);
-
-    filteredLeaderboard
-      .pipe(
-        map(teams => {
-          try {
-            return teams.findIndex(t => t.id === this.team.getValue().id) + 1;
-          } catch (e) {
-            return 0;
-          }
-        }),
-        distinctUntilChanged()
-      )
-      .subscribe(this.teamLeaderBoardRank);
 
     filteredLeaderboard
       .pipe(

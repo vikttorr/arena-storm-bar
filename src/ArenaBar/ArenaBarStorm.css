@@ -1,6 +1,6 @@
 .arena-bar-storm {
   height: 10px;
-  background:rgba(247, 221, 253, 0.8);
+  background: rgba(247, 221, 253, 0.8);
   width: 1180px;
   position: relative;
   z-index: 5;
@@ -9,12 +9,12 @@
 .arena-bar-storm__team {
   position: absolute;
   display: block;
-  width:20px;
+  width: 20px;
   height: 20px;
-  background: #5C4374;
+  background: #5c4374;
   left: 50%;
-  top:-10px;
-  margin-left:-10px;
+  top: -10px;
+  margin-left: -10px;
   z-index: 5;
 }
 
@@ -33,34 +33,19 @@
   height: 100%;
   display: block;
   position: absolute;
-  left:0;
-  top:0;
+  left: 0;
+  top: 0;
 }
 
 .arena-bar-storm__progress--storm {
   z-index: 1;
-  box-shadow: 0px 0px 21px #8C5AF6;
-  background: repeating-linear-gradient(
-    45deg,
-    #8840B0,
-    #8840B0 4px,
-    #A833E9 4px,
-    #A833E9 8px
-  );
-  opacity: 0.7;  
+  box-shadow: 0px 0px 21px #8c5af6;
+  background: repeating-linear-gradient(45deg, #8840b0, #8840b0 4px, #a833e9 4px, #a833e9 8px);
+  opacity: 0.7;
 }
-
 .arena-bar-storm__progress--elim {
-  background: #894FC8;
-   background: repeating-linear-gradient(
-    45deg,
-    #756784,
-    #756784 4px,
-    #8c7e9a 4px,
-    #8c7e9a 8px
-  ); 
+  background: #894fc8;
+  background: repeating-linear-gradient(45deg, #756784, #756784 4px, #8c7e9a 4px, #8c7e9a 8px);
   z-index: 2;
   /* box-shadow: 0px 0px 21px #8C5AF6; */
 }
-
-

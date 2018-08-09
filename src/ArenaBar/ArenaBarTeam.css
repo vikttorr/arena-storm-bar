@@ -1,18 +1,18 @@
 .arena-bar-team {
-  background:;
+  background: ;
   display: flex;
   flex: 1 1 auto;
-  border-left: 1px solid rgba(0,0,0,.1);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: row;
-  background: #FFF;
+  background: #fff;
 }
 
 .arena-bar-team__rank {
-  width:65px;
+  width: 65px;
   flex: 0 0 auto;
-  background:#5c4374;
-  color:#FFF;
+  background: #5c4374;
+  color: #fff;
   font-size: 20px;
   font-weight: 700;
   display: flex;
@@ -37,7 +37,7 @@
   display: inline;
   flex: 1;
   white-space: nowrap;
-  max-width:280px;
+  max-width: 280px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -53,24 +53,23 @@
 }
 
 .arena-bar-team__avatar {
-  position: relative;  
+  position: relative;
   width: 65px;
   flex: 0 0 auto;
 }
 
-
 .arena-bar-team__avatar--img {
   position: absolute;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
 }
 
 .arena-bar-team__score {
-  flex:  0 0 auto;
+  flex: 0 0 auto;
   width: 65px;
-  color:#000;
+  color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,16 +77,14 @@
   font-weight: 800;
 }
 
-
-
 .avatars-2 .arena-bar-team__avatar--img:last-child {
-    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
 }
 
-.avatars-3 .arena-bar-team__avatar--img:nth-child(2)  {
+.avatars-3 .arena-bar-team__avatar--img:nth-child(2) {
   clip-path: polygon(50% 0, 0 100%, 100% 100%);
 }
 
-.avatars-3 .arena-bar-team__avatar--img:nth-child(3)  {
-  clip-path:polygon(50% 0, 0 100%, 0 0);
+.avatars-3 .arena-bar-team__avatar--img:nth-child(3) {
+  clip-path: polygon(50% 0, 0 100%, 0 0);
 }
