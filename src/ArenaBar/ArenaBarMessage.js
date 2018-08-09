@@ -3,35 +3,10 @@ import { Spring, animated } from 'react-spring';
 import './ArenaBarMessage.css';
 
 export default class ArenaBarMessage extends Component {
-  state = {
-    visible: false,
-    state: ''
-  };
-
-  componentDidMount = () => {
-    if (this.props.state === 'storm' || this.props.state === 'eliminated') {
-      return this.setState({ visible: true, state: this.props.state });
-    }
-  };
-
-  componentDidUpdate = prevProps => {
-    if (this.props.state && prevProps.state !== this.props.state) {
-      if (this.props.state === 'storm' || this.props.state === 'eliminated') {
-        if (this.state.visible) {
-          return this.setState({ visible: false }, () =>
-            setTimeout(() => this.setState({ visible: true, state: this.props.state }), 800)
-          );
-        }
-        return this.setState({ visible: true, state: this.props.state });
-      }
-      return this.setState({ visible: false });
-    }
-  };
-
   renderMessage = () => {
     const stormIcon = 'https://a.imgdropt.com/image/7e728172-8167-427e-ac05-a4988b58226c';
     const skullIcon = 'https://a.imgdropt.com/image/bd57ba95-7e1a-43fd-9b7a-5e10c1654dff';
-    const { state } = this.state;
+    const { state } = this.props;
 
     switch (state) {
       case 'eliminated':
@@ -65,7 +40,7 @@ export default class ArenaBarMessage extends Component {
           <div className="arena-bar-message__content storm">
             <div className="arena-bar-message__content--state">
               <img src={stormIcon} alt="" className="arena-bar-message__content--state__icon" />
-              <div className="arena-bar-message__content--state__text"> In the Storm!</div>
+              <div className="arena-bar-message__content--state__text"> Winner!</div>
             </div>
             <div className="arena-bar-message__content--rotating-msg">
               Safe zone / 20 pointspointspoints
@@ -78,7 +53,7 @@ export default class ArenaBarMessage extends Component {
   };
 
   render() {
-    const { visible, state } = this.state;
+    const { visible, state } = this.props;
     const toStyle = {
       transform: visible ? 'translate3d(0px, 0px, 0px)' : 'translate3d(0px, 60px, 0px)',
       boxShadow: visible ? `0px 0px 27px rgba(0, 0, 0, 0.54)` : `0px 0px 0px rgba(0, 0, 0, 0.54)`

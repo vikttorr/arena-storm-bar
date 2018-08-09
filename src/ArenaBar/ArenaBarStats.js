@@ -9,7 +9,7 @@ export default class ArenaBarStats extends PureComponent {
       <div className="arena-bar-stats">
         <ul className="arena-bar-stats__list">
           {stats.map(stat => (
-            <ArenaBarStatsItem {...stat} />
+            <ArenaBarStatsItem key={stat.label} {...stat} />
           ))}
         </ul>
       </div>
@@ -23,14 +23,17 @@ class ArenaBarStatsItem extends PureComponent {
     return (
       <li className="arena-bar-stats__item">
         <span className="arena-bar-stats__item--label">{label}</span>
-        <span className="arena-bar-stats__item--value">{value}</span>
+        <span className="arena-bar-stats__item--value">{safeNumberWithCommas(value)}</span>
       </li>
     );
   }
 }
 
-// const numberWithCommas = x => {
-//   var parts = x.toString().split('.');
-//   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-//   return parts.join('.');
-// };
+const safeNumberWithCommas = x => {
+  if(!Number.isInteger(x) || x < 1000){
+    return x;
+  }
+  let parts = x.toString().split('.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return parts.join('.');
+};

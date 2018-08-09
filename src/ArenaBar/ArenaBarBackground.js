@@ -33,11 +33,11 @@ class BackgroundAnimation extends Component {
     const { images } = this.props;
     const { index } = this.state;
     this.loop = setInterval(() => {
-      console.log('loop', { inxed: index, imgs: images.length });
+      //console.log('loop', { inxed: index, imgs: images.length });
       if (index + 1 >= images.length - 1) {
-        return this.setState({ index: 0 }, () => console.log('index 0'));
+        return this.setState({ index: 0 });
       }
-      return this.setState({ index: index + 1 }, () => console.log('index +1'));
+      return this.setState({ index: index + 1 });
     }, 2000);
   }
 

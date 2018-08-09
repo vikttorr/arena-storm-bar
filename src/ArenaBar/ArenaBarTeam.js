@@ -21,8 +21,8 @@ export default class ArenaBarTeam extends Component {
   renderName = (name, i) => {
     const { usernames } = this.props;
     return usernames.map((name, i) => {
-      console.log(' arena bar - render:', { name, i: i + 1, l: usernames.length });
-      if (usernames.langth >= i + 1) {
+      //console.log(' arena bar - render:', { name, i: i + 1, l: usernames.length });
+      if (usernames.length >= i + 1) {
         return (
           <span key={name} className="arena-bar-team__name--item">
             {name}

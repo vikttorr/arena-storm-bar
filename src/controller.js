@@ -1,4 +1,4 @@
-import { BehaviorSubject, interval } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { map, filter, distinctUntilChanged } from 'rxjs/operators';
 
 import SDK from 'bebo-sdk';
@@ -20,7 +20,7 @@ if (window_location.indexOf('renegade') > -1) {
 let feeds_url = '';
 
 if (env === 'dev') {
-  feeds_url = 'https://costello.bebo-dev.com:8650';
+  feeds_url = 'https://feeds.bebo-dev.com';
 } else if (env === 'prod') {
   feeds_url = 'https://feeds.bebo.com';
 } else if (env === 'renegade') {
@@ -31,28 +31,8 @@ if (env === 'dev') {
   feeds_url = 'http://greengoblin.bebo-dev.com:8650';
 }
 
-const UI_STATES = [
-  { id: 'transition', seconds: 10 },
-  { id: 'bar', seconds: 120 }
-  //{ id: 'storm', seconds: 60 },
-  //{ id: 'stats', seconds: 60 }
-  //{ id: 'transition', seconds: 1 },
-  //{ id: 'promo', seconds: 6, promo_id: 'postmates' },
-
-  //{ id: 'stats', seconds: 8 },
-  //{ id: 'score', seconds: 6 },
-  //{ id: 'transition', seconds: 1 },
-
-  //{ id: 'promo', seconds: 6, promo_id: 'meta-threads' },
-  //{ id: 'transition', seconds: 1 },
-  //{ id: 'stats', seconds: 7 },
-  //{ id: 'score', seconds: 8 },
-  //{ id: 'storm', seconds: 9 }
-  //{ id: 'transition', seconds: 1 },
-];
-
 const TOURNAMENT_CHECK_LOOP = 30 * 1000; //we check if there is a valid tournament every minute, this will turn everything else on / off
-const LEADERBOARD_LOOP = 10 * 1000;
+const LEADERBOARD_LOOP = 5 * 1000;
 
 console.log('env == ', env);
 class Controller {
@@ -75,47 +55,16 @@ class Controller {
     this.activeTournament = new BehaviorSubject(null);
     this.liveViewers = new BehaviorSubject(0);
     this.teamsAlive = new BehaviorSubject(0);
+    this.teamsInStorm = new BehaviorSubject(0);
+    this.teamsEliminated = new BehaviorSubject(0);
     this.totalTeams = new BehaviorSubject(0);
     this.nextStormDate = new BehaviorSubject(Date.now());
     this.team = new BehaviorSubject(null);
-    this.uiState = new BehaviorSubject({ id: 'transition', seconds: 0 });
+    this.uiState = new BehaviorSubject('normal');
 
     //internal
-    this.tick = interval(1000);
 
     this.startDerivativeSubscriptions();
-  };
-
-  computeAvailableUIStates = () => {
-    return UI_STATES.filter(state => {
-      if (state.id === 'score' && !this.team.getValue()) {
-        return false;
-      }
-      if (state.id === 'stats' && !this.totalTeams.getValue()) {
-        return false;
-      }
-      if (
-        state.id === 'storm' &&
-        (!this.nextStormDate.getValue() ||
-          !this.team.getValue() ||
-          !this.teamLeaderBoardRank.getValue())
-      ) {
-        return false;
-      }
-
-      return true;
-    }).filter((state, i, array) => {
-      const previousState = array[i - 1] || array[array.length - 1];
-      if (
-        previousState &&
-        state.id === previousState.id &&
-        previousState.promo_id === state.promo_id &&
-        state.id !== 'transition'
-      ) {
-        return false;
-      }
-      return true;
-    });
   };
 
   startDerivativeSubscriptions = () => {
@@ -143,37 +92,37 @@ class Controller {
 
     filteredLeaderboard
       .pipe(
-        map(teams => teams.filter(t => t.state !== 'eliminated').length),
+        map(teams => teams.filter(t => t.state === 'alive').length),
         distinctUntilChanged()
       )
       .subscribe(this.teamsAlive);
-  };
+    filteredLeaderboard
+      .pipe(
+        map(teams => teams.filter(t => t.state === 'storm').length),
+        distinctUntilChanged()
+      )
+      .subscribe(this.teamsInStorm);
+    filteredLeaderboard
+      .pipe(
+        map(teams => teams.filter(t => t.state === 'eliminated').length),
+        distinctUntilChanged()
+      )
+      .subscribe(this.teamsEliminated);
 
-  setupUITriggers = () => {
-    let ui_states = this.computeAvailableUIStates();
-    let nextUiStateOnTick = 5;
-    let currentUiState = 0;
-    this.tick.subscribe(nextTick => {
-      ui_states = this.computeAvailableUIStates();
-      console.log('tick', { tick: nextTick, nextUiStateOnTick, currentUiState });
-      if (nextTick === nextUiStateOnTick) {
-        //go to next state
-        //next state is the next one in the array OR the first one in the array (when we hit the end)
-        let nextStateId = currentUiState + 1;
-        if (!ui_states[nextStateId]) {
-          nextStateId = 0;
+    //for UI purposes
+    this.teamsAlive
+      .pipe(
+        filter(t => t),
+        distinctUntilChanged()
+      )
+      .subscribe(teamsAlive => {
+        if (this.totalTeams.getValue() !== teamsAlive) {
+          this.uiState.next('storm');
+          setTimeout(() => {
+            this.uiState.next('normal');
+          }, 10 * 1000);
         }
-
-        const nextState = ui_states[nextStateId];
-        currentUiState = nextStateId;
-        nextUiStateOnTick += env === 'dev' ? nextState.seconds / 2 : nextState.seconds;
-        if (this.nextStormDate.getValue() === 'ended') {
-          this.uiState.next({ id: 'storm', seconds: 5000 });
-        } else {
-          this.uiState.next(nextState);
-        }
-      }
-    });
+      });
   };
 
   handleSDKMessage = message => {
@@ -182,7 +131,6 @@ class Controller {
         this.access_token = message.access_token;
         this.user_name = message.username;
         this.checkForTournament();
-        this.setupUITriggers();
       }
     }
   };

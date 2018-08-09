@@ -9,13 +9,19 @@
 .arena-bar-storm__team {
   position: absolute;
   display: block;
-  width: 20px;
-  height: 20px;
-  background: #5c4374;
-  left: 50%;
+  width: 0px;
+  height: 0px;
+  left: 0%;
   top: -10px;
-  margin-left: -10px;
+  margin-left: -5px;
   z-index: 5;
+  transition: left 300ms ease;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+
+  border-top: 10px solid #5c4374;
 }
 
 .arena-bar-storm__progress {
@@ -35,6 +41,7 @@
   position: absolute;
   left: 0;
   top: 0;
+  transition: width 300ms ease;
 }
 
 .arena-bar-storm__progress--storm {
