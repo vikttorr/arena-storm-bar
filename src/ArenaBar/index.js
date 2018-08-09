@@ -8,7 +8,7 @@ import ArenaBarMessage from './ArenaBarMessage';
 import ArenaBarTeam from './ArenaBarTeam';
 import ArenaBarStats from './ArenaBarStats';
 import ArenaBarStorm from './ArenaBarStorm';
-import ArenaBarBackground from './ArenaBarBackground';
+// import ArenaBarBackground from './ArenaBarBackground';
 
 export default class ArenaBar extends Component {
   getStreamerProfileImage = name => {
@@ -64,7 +64,7 @@ export default class ArenaBar extends Component {
           teamsEliminated={teamsEliminated}
           teamRank={team.rank}
         />
-        <ArenaBarBackground state={team.state} />
+        {/* <ArenaBarBackground state={team.state} /> */}
       </div>
     );
   }
