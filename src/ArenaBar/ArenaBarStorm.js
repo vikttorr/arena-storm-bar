@@ -6,7 +6,7 @@ export default class ArenaBarStorm extends Component {
   render() {
     const { large, totalTeams, teamsInStorm, teamsEliminated, teamRank } = this.props;
 
-    const teamPercent = 100 - (teamRank / totalTeams) * 100;
+    const teamPercent = 100 - ((teamRank - 1) / totalTeams) * 100;
     const stormPercent = ((teamsInStorm + teamsEliminated) / totalTeams) * 100;
     const elimPercent = (teamsEliminated / totalTeams) * 100;
 
