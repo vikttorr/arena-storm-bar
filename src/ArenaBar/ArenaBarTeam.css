@@ -43,7 +43,12 @@
 }
 
 .arena-bar-team__name--item {
-  display: inline;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
 }
 
 .arena-bar-team__name--seperator {

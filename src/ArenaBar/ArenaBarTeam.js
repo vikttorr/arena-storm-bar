@@ -22,15 +22,23 @@ export default class ArenaBarTeam extends Component {
     const { usernames } = this.props;
     return usernames.map((name, i) => {
       //console.log(' arena bar - render:', { name, i: i + 1, l: usernames.length });
-      if (usernames.length >= i + 1) {
+      if (usernames.length - 1 === i) {
         return (
-          <span key={name} className="arena-bar-team__name--item">
+          <span
+            key={name}
+            className="arena-bar-team__name--item"
+            style={{ maxWidth: `${100 / usernames.length}%` }}
+          >
             {name}
           </span>
         );
       }
       return [
-        <span key={name} className="arena-bar-team__name--item">
+        <span
+          key={name}
+          className="arena-bar-team__name--item"
+          style={{ maxWidth: `${100 / usernames.length}%` }}
+        >
           {name}
         </span>,
         <span key={`divider_${i}`} className="arena-bar-team__name--seperator">
