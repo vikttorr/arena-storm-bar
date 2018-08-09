@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 import { withBackgrounds } from '@storybook/addon-backgrounds';
-import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs';
+import { withKnobs, array, boolean, number, select } from '@storybook/addon-knobs';
 
 import ArenaBar from '../ArenaBar';
 import ArenaBarTeam from '../ArenaBar/ArenaBarTeam';
@@ -40,17 +40,19 @@ const numberWithCommas = x => {
 storiesOf('ArenaBar', module)
   .addDecorator(withKnobs)
   .add('Default', () =>  {
+   
     const options = {
       alive: 'alive',
       storm: 'storm',
       eliminated: 'eliminated',
       winner: 'winner',
-      none: 'none',
     };
-    const value = select('state', options, 'alive', 'GROUP-ID1');
     
+    const uiState = select('uiState', {none: 'none', storm:'storm'}, 'none');
+    const teamState = select('teamState', options, 'alive');
+    const usernames = array('usernames',  [...TEST_TEAM.usernames]);
 
-    return <ArenaBar stats={stats} team={{...TEST_TEAM, state:value}}/>
+    return <ArenaBar stats={stats} team={{...TEST_TEAM, state:teamState, usernames}}/>
   })
   .add('Alive', () =>  ( <ArenaBar stats={stats} team={{...TEST_TEAM, state:'alive'}}/>))
   .add('Eliminated', () =>  ( <ArenaBar stats={stats} team={{...TEST_TEAM, state:'eliminated'}}/> )) 
