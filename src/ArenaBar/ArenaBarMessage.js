@@ -38,7 +38,11 @@ export default class ArenaBarMessage extends Component {
         return (
           <div className="arena-bar-message__content eliminated">
             <div className="arena-bar-message__content--state">
-              <img src={skullIcon} className="arena-bar-message__content--state__icon skull" />
+              <img
+                src={skullIcon}
+                alt=""
+                className="arena-bar-message__content--state__icon skull"
+              />
               <span className="arena-bar-message__content--state__text">Eliminated</span>
             </div>
             <div className="arena-bar-message__content--rotatinng-msg">Eliminat</div>
@@ -48,7 +52,7 @@ export default class ArenaBarMessage extends Component {
         return (
           <div className="arena-bar-message__content storm">
             <div className="arena-bar-message__content--state">
-              <img src={stormIcon} className="arena-bar-message__content--state__icon" />
+              <img src={stormIcon} alt="" className="arena-bar-message__content--state__icon" />
               <div className="arena-bar-message__content--state__text"> In the Storm!</div>
             </div>
             <div className="arena-bar-message__content--rotating-msg">
@@ -60,7 +64,7 @@ export default class ArenaBarMessage extends Component {
         return (
           <div className="arena-bar-message__content storm">
             <div className="arena-bar-message__content--state">
-              <img src={stormIcon} className="arena-bar-message__content--state__icon" />
+              <img src={stormIcon} alt="" className="arena-bar-message__content--state__icon" />
               <div className="arena-bar-message__content--state__text"> In the Storm!</div>
             </div>
             <div className="arena-bar-message__content--rotating-msg">

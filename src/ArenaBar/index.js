@@ -23,7 +23,7 @@ export default class ArenaBar extends Component {
   };
 
   render() {
-    const { team, storm, stats, activeTournament } = this.props;
+    const { team, stats, activeTournament } = this.props;
     const avatarImages = team.img_url
       ? [...team.img_url]
       : team.usernames.map(username => this.getStreamerProfileImage(username));

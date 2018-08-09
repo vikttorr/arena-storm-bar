@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Transition, animated } from 'react-spring';
+//import { Transition, animated } from 'react-spring';
 import './ArenaBarStats.css';
 
 export default class ArenaBarStats extends PureComponent {
@@ -29,8 +29,8 @@ class ArenaBarStatsItem extends PureComponent {
   }
 }
 
-const numberWithCommas = x => {
-  var parts = x.toString().split('.');
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  return parts.join('.');
-};
+// const numberWithCommas = x => {
+//   var parts = x.toString().split('.');
+//   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+//   return parts.join('.');
+// };

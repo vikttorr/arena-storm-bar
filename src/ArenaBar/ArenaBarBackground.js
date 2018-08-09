@@ -54,7 +54,7 @@ class BackgroundAnimation extends Component {
     const _images = [];
     images.forEach(image => {
       const renderFunc = style => (
-        <img src={image} className="arena-bar-background__img" style={style} />
+        <img src={image} alt="" className="arena-bar-background__img" style={style} />
       );
       _images.push(renderFunc);
     });

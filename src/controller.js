@@ -244,7 +244,7 @@ class Controller {
     if (!tournament_id) {
       //this.shouldRender.next(false);
       this.leaderBoard.next([]);
-      return Promise.reject('no_tournament_id');
+      return console.error('no tournament id');
     }
     return this.httpGet(
       `${feeds_url}/eligibility/tournament/next_cutoff?tournament_id=${tournament_id}`
@@ -265,7 +265,7 @@ class Controller {
     if (!tournament_id) {
       //this.shouldRender.next(false);
       this.leaderBoard.next([]);
-      return Promise.reject('no_tournament_id');
+      return console.error('no tournament id');
     }
     return this.httpGet(`${feeds_url}/leaderboard?tournament_id=${tournament_id}`)
       .then(res => {
