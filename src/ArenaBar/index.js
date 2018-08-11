@@ -10,6 +10,7 @@ import ArenaBarStats from './ArenaBarStats';
 import ArenaBarStorm from './ArenaBarStorm';
 // import ArenaBarBackground from './ArenaBarBackground';
 
+
 export default class ArenaBar extends Component {
   getStreamerProfileImage = name => {
     return `https://feeds.bebo.com/image/twitch?twitch_username=${name}`;
@@ -66,7 +67,9 @@ export default class ArenaBar extends Component {
           <ArenaBarMessage state={team.state} visible={team.state !== 'alive'} />
         </div>
         <ArenaBarStorm
-          large={uiState === 'storm'}
+        
+        teamState={team.state}
+          large={uiState === 'storm' && team.state === 'alive'}
           totalTeams={totalTeams}
           teamsInStorm={teamsInStorm}
           teamsEliminated={teamsEliminated}

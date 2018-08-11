@@ -1,6 +1,6 @@
 .arena-bar-stats {
   flex: 0 0 auto;
-  width: 500px;
+  width: 40%;
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   /* background:lightblue; */
   position: relative;
@@ -20,14 +20,15 @@
 .arena-bar-stats__item {
   flex: 1;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 16px;
   height: 100%;
-  justify-content: space-between;
-  align-items: center;
+  /* justify-content: space-between; */
+  /* align-items: center; */
   padding: 0 10px;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
 
 .arena-bar-stats__item:last-child {
@@ -37,6 +38,8 @@
 .arena-bar-stats__item--label {
   font-weight: 600;
   opacity: 0.7;
+  text-transform: uppercase;
+  font-size: 14px;
 }
 
 .arena-bar-stats__item--value {

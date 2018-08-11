@@ -20,32 +20,11 @@ export default class ArenaBarTeam extends Component {
 
   renderName = (name, i) => {
     const { usernames } = this.props;
-    return usernames.map((name, i) => {
-      //console.log(' arena bar - render:', { name, i: i + 1, l: usernames.length });
-      if (usernames.length - 1 === i) {
-        return (
-          <span
-            key={name}
-            className="arena-bar-team__name--item"
-            style={{ maxWidth: `${100 / usernames.length}%` }}
-          >
-            {name}
-          </span>
-        );
-      }
-      return [
-        <span
-          key={name}
-          className="arena-bar-team__name--item"
-          style={{ maxWidth: `${100 / usernames.length}%` }}
-        >
-          {name}
-        </span>,
-        <span key={`divider_${i}`} className="arena-bar-team__name--seperator">
-          /
-        </span>
-      ];
-    });
+    return usernames.map((name, i) => (
+      <div key={name} className="arena-bar-team__name--item">
+        {name}
+      </div>
+    ));
   };
 
   render() {
@@ -53,7 +32,16 @@ export default class ArenaBarTeam extends Component {
     const avatarClasses = cx('arena-bar-team__avatar', `avatars-${usernames.length}`);
     return (
       <div className="arena-bar-team">
-        <span className="arena-bar-team__rank">{`${getGetOrdinal(rank)}`}</span>
+        <span
+          className={cx('arena-bar-team__rank', {
+            first: rank === 1,
+            second: rank === 2,
+            third: rank === 3
+          })}
+        >
+          <span className="arena-bar-team__rank__number">{rank}</span>
+          <span className="arena-bar-team__rank__ordinal">{`${getGetOrdinal(rank)}`}</span>
+        </span>
         <div className={avatarClasses}>
           {avatars &&
             avatars.map(avatar => (
@@ -72,5 +60,5 @@ export default class ArenaBarTeam extends Component {
 const getGetOrdinal = n => {
   var s = ['th', 'st', 'nd', 'rd'],
     v = n % 100;
-  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  return s[(v - 20) % 10] || s[v] || s[0];
 };

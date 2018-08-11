@@ -8,8 +8,8 @@ export default class ArenaBarStats extends PureComponent {
     return (
       <div className="arena-bar-stats">
         <ul className="arena-bar-stats__list">
-          {stats.map(stat => (
-            <ArenaBarStatsItem key={stat.label} {...stat} />
+          {stats.map((stat, i) => (
+            <ArenaBarStatsItem key={`stat_${i}`} {...stat} />
           ))}
         </ul>
       </div>
@@ -30,7 +30,7 @@ class ArenaBarStatsItem extends PureComponent {
 }
 
 const safeNumberWithCommas = x => {
-  if(!Number.isInteger(x) || x < 1000){
+  if (!Number.isInteger(x) || x < 1000) {
     return x;
   }
   let parts = x.toString().split('.');

@@ -1,7 +1,7 @@
 .arena-bar-storm {
   height: 10px;
   background: rgba(247, 221, 253, 0.8);
-  width: 1180px;
+  width: 100%;
   position: relative;
   z-index: 5;
 }
@@ -20,8 +20,21 @@
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
+  border-top: 10px solid #000;
+}
 
-  border-top: 10px solid #5c4374;
+.arena-bar-storm__team.storm {
+  border-top: 10px solid #782db5;
+  
+}
+.arena-bar-storm__team.alive {
+  border-top: 10px solid #48b942;
+}
+.arena-bar-storm__team.winner {
+  border-top: 10px solid #fdc823;
+}
+.arena-bar-storm__team.eliminated {
+  border-top: 10px solid #201b20;
 }
 
 .arena-bar-storm__progress {
@@ -31,28 +44,93 @@
   position: absolute;
   overflow: hidden;
   box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
+  background: rgba(173, 39, 235, 0.1);
 }
 
 .arena-bar-storm__progress--elim,
-.arena-bar-storm__progress--storm {
+.arena-bar-storm__progress--storm,
+.arena-bar-storm__progress--safe {
+  /* overflow: hidden; */
+  color: #fff;
+  text-align: center;
   width: 0%;
   height: 100%;
-  display: block;
   position: absolute;
   left: 0;
   top: 0;
-  transition: width 300ms ease;
+  transition: all 300ms ease;
+  text-transform: uppercase;
+  font-family: 'Inter UI', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
 }
 
-.arena-bar-storm__progress--storm {
+.arena-bar-storm__progress--elim span,
+.arena-bar-storm__progress--storm span,
+.arena-bar-storm__progress--safe span{
+  margin: auto;
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.arena-bar-storm__progress--safe {
   z-index: 1;
+  background: #48b942;
+  opacity: 1;
+}
+.arena-bar-storm__progress--storm {
+  z-index: 3;
   box-shadow: 0px 0px 21px #8c5af6;
-  background: repeating-linear-gradient(45deg, #8840b0, #8840b0 4px, #a833e9 4px, #a833e9 8px);
-  opacity: 0.7;
+  background: #782db5;
+  opacity: 1;
 }
 .arena-bar-storm__progress--elim {
-  background: #894fc8;
-  background: repeating-linear-gradient(45deg, #756784, #756784 4px, #8c7e9a 4px, #8c7e9a 8px);
+  background: #201b20;
+  /* background: repeating-linear-gradient(45deg, #756784, #756784 4px, #8c7e9a 4px, #8c7e9a 8px); */
   z-index: 2;
   /* box-shadow: 0px 0px 21px #8C5AF6; */
+}
+
+.arena-bar-storm__progress--storm--first, .arena-bar-storm__progress--storm--last{
+  position: absolute;
+  font-size: 12px;
+  bottom: 1px;
+  text-transform: initial;
+  max-width: 200%!important;
+}
+
+.arena-bar-storm__progress--storm--first{
+  left: 0;
+  
+  transform: translateX(-75%)
+}
+.arena-bar-storm__progress--storm--last{
+  right: 0;
+  transform: translateX(75%)
+}
+
+.bounce{
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    
+    transform: translateY(0);
+  }
+  40% {
+    
+    transform: translateY(-8px);
+  }
+  60% {
+    
+    transform: translateY(-4px);
+  }
 }

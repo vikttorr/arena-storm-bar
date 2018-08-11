@@ -1,16 +1,17 @@
 .arena-bar-message {
   position: absolute;
-  bottom: 65px;
-  left: 160px;
+  bottom: 48px;
+  left: 100px;
   background: #894fc8;
-  height: 55px;
-  width: 100%;
+
+  /* width: 100%; */
   max-width: 519px;
-  border-radius: 0 4px 0 0;
+  border-radius: 4px 4px 0 0;
   z-index: -1;
   display: flex;
   flex-direction: row;
-  height: 60px;
+  height: 28px;
+  overflow: hidden;
 }
 
 .arena-bar-messag .arena-bar-message__content {
@@ -20,7 +21,7 @@
   width: 100%;
   color: #fff;
   font-size: 20px;
-  font-weight: 7600;
+  font-weight: 700;
 }
 
 .arena-bar-message.storm .arena-bar-message__content--state {
@@ -28,7 +29,11 @@
 }
 
 .arena-bar-message.eliminated {
-  background: #7e718c;
+  background: #201b20;
+}
+
+.arena-bar-message.winner {
+  background: #fdc823;
 }
 
 .arena-bar-message.eliminated .arena-bar-message__content--state {
@@ -36,7 +41,7 @@
 }
 
 .arena-bar-message__content--state {
-  background: rgba(0, 0, 0, 0.1);
+  /* background: rgba(0, 0, 0, 0.1); */
   height: 100%;
   flex: 0 0 auto;
   padding: 0 25px;
@@ -45,11 +50,11 @@
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  background: repeating-linear-gradient(45deg, #894fc8, #894fc8 4px, #a833e9 4px, #a833e9 8px);
+  /* background: repeating-linear-gradient(45deg, #894fc8, #894fc8 4px, #a833e9 4px, #a833e9 8px); */
 }
 
 .arena-bar-message__content--state__text {
-  font-size: 30px;
+  font-size: 25px;
   color: #fff;
   font-family: 'Fortnite';
   line-height: 0.8;
@@ -58,14 +63,14 @@
 }
 
 .arena-bar-message__content--state__icon {
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   margin-right: 10px;
 }
 
 .arena-bar-message__content--state__icon.skull {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
 }
 
 .arena-bar-message__content--rotating-msg {

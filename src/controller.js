@@ -1,5 +1,5 @@
-import { BehaviorSubject } from 'rxjs';
-import { map, filter, distinctUntilChanged } from 'rxjs/operators';
+import { BehaviorSubject, timer, empty } from 'rxjs';
+import { map, filter, distinctUntilChanged, switchMap, delayWhen } from 'rxjs/operators';
 
 import SDK from 'bebo-sdk';
 
@@ -32,7 +32,7 @@ if (env === 'dev') {
 }
 
 const TOURNAMENT_CHECK_LOOP = 30 * 1000; //we check if there is a valid tournament every minute, this will turn everything else on / off
-const LEADERBOARD_LOOP = 5 * 1000;
+const LEADERBOARD_LOOP = 3 * 1000;
 
 console.log('env == ', env);
 class Controller {
@@ -76,7 +76,10 @@ class Controller {
           if (teamIndex === -1) {
             return null;
           }
-          return { ...teams[teamIndex], rank: teamIndex + 1 };
+          return {
+            ...teams[teamIndex],
+            rank: teamIndex + 1
+          };
         }),
         filter(team => team),
         distinctUntilChanged()
@@ -110,19 +113,26 @@ class Controller {
       .subscribe(this.teamsEliminated);
 
     //for UI purposes
-    this.teamsAlive
+    timer(0, 1000)
       .pipe(
-        filter(t => t),
-        distinctUntilChanged()
+        switchMap(() =>
+          this.nextStormDate.pipe(
+            filter(d => d),
+            map(date => {
+              if (date !== 'ended') {
+                const now = Date.now() + 5000;
+                const then = Date.parse(date);
+                return now >= then;
+              }
+              return false;
+            }),
+            map(bool => (bool ? 'storm' : 'normal'))
+          )
+        ),
+        distinctUntilChanged(),
+        delayWhen(val => (val === 'normal' ? timer(5000) : empty()))
       )
-      .subscribe(teamsAlive => {
-        if (this.totalTeams.getValue() !== teamsAlive) {
-          this.uiState.next('storm');
-          setTimeout(() => {
-            this.uiState.next('normal');
-          }, 10 * 1000);
-        }
-      });
+      .subscribe(state => this.uiState.next(state));
   };
 
   handleSDKMessage = message => {
@@ -247,7 +257,10 @@ class Controller {
     return this.httpGet(`${feeds_url}/eligibility/tournament`)
       .then(res => {
         const tournament = res.result[0];
-        this.activeTournament.next(tournament);
+        this.activeTournament.next({
+          ...tournament,
+          image_url: 'https://a.imgdropt.com/image/9c81ac24-0f3d-4d44-9252-7d7cd350c1eb'
+        });
       })
       .catch(err => {
         console.error('failed to get the tournament_data', err);

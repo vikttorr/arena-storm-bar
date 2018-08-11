@@ -1,5 +1,5 @@
 .arena-bar-team {
-  background: ;
+  /* background: ; */
   display: flex;
   flex: 1 1 auto;
   /* border-left: 1px solid rgba(0, 0, 0, 0.1); */
@@ -9,9 +9,9 @@
 }
 
 .arena-bar-team__rank {
-  width: 65px;
+  width: 48px;
   flex: 0 0 auto;
-  background: #5c4374;
+  background: #1d181d;
   color: #fff;
   font-size: 20px;
   font-weight: 700;
@@ -19,36 +19,56 @@
   justify-content: center;
   align-items: center;
 }
+.arena-bar-team__rank.first {
+  background: #fdc823;
+}
+.arena-bar-team__rank.second {
+  background: #dcdee2;
+}
+.arena-bar-team__rank.third {
+  background: #f0a969;
+}
+
+.arena-bar-team__rank__number {
+  font-size: 26px;
+}
+.arena-bar-team__rank__ordinal {
+  font-size: 14px;
+  transform: translateY(-5px);
+}
 
 .arena-bar-team__name {
   flex: 1;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0 15px;
+  flex-direction: column;
+
+  /* justify-content: flex-start; */
+  padding: 0 5px;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 16px;
+  line-height: 1;
   overflow: hidden;
 }
 
 .arena-bar-team__name--inner {
-  width: 100%;
-  display: inline;
-  flex: 1;
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
   white-space: nowrap;
-  max-width: 280px;
+  max-width: 180px;
   overflow: hidden;
   text-overflow: ellipsis;
+  height: 100%;
 }
 
 .arena-bar-team__name--item {
-  display: inline-block;
+  display: block;
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  vertical-align: bottom;
+  margin: auto 0;
+  /* vertical-align: bottom; */
 }
 
 .arena-bar-team__name--seperator {
@@ -59,7 +79,7 @@
 
 .arena-bar-team__avatar {
   position: relative;
-  width: 65px;
+  width: 48px;
   flex: 0 0 auto;
 }
 
@@ -73,7 +93,7 @@
 
 .arena-bar-team__score {
   flex: 0 0 auto;
-  width: 65px;
+  width: 48px;
   color: #000;
   display: flex;
   justify-content: center;
