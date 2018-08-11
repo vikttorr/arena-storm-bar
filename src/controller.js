@@ -257,10 +257,7 @@ class Controller {
     return this.httpGet(`${feeds_url}/eligibility/tournament`)
       .then(res => {
         const tournament = res.result[0];
-        this.activeTournament.next({
-          ...tournament,
-          image_url: 'https://a.imgdropt.com/image/9c81ac24-0f3d-4d44-9252-7d7cd350c1eb'
-        });
+        this.activeTournament.next(tournament);
       })
       .catch(err => {
         console.error('failed to get the tournament_data', err);
