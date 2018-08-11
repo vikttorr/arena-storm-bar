@@ -40,7 +40,12 @@ export default class ArenaBarMessage extends Component {
         return (
           <div className="arena-bar-message__content winner">
             <div className="arena-bar-message__content--state">
-              <img style={{height: 19, width: 19}} src={trophy} alt="" className="arena-bar-message__content--state__icon" />
+              <img
+                style={{ height: 19, width: 19 }}
+                src={trophy}
+                alt=""
+                className="arena-bar-message__content--state__icon"
+              />
               <div className="arena-bar-message__content--state__text"> Winner!</div>
             </div>
             {/* <div className="arena-bar-message__content--rotating-msg">
@@ -55,7 +60,7 @@ export default class ArenaBarMessage extends Component {
 
   render() {
     const { visible, state } = this.props;
-    
+
     const toStyle = {
       transform: visible ? 'translate3d(0px, 0px, 0px)' : 'translate3d(0px, 60px, 0px)',
       boxShadow: visible ? `0px 0px 27px rgba(0, 0, 0, 0.54)` : `0px 0px 0px rgba(0, 0, 0, 0.54)`

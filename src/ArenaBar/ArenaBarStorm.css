@@ -25,7 +25,6 @@
 
 .arena-bar-storm__team.storm {
   border-top: 10px solid #782db5;
-  
 }
 .arena-bar-storm__team.alive {
   border-top: 10px solid #48b942;
@@ -68,7 +67,7 @@
 
 .arena-bar-storm__progress--elim span,
 .arena-bar-storm__progress--storm span,
-.arena-bar-storm__progress--safe span{
+.arena-bar-storm__progress--safe span {
   margin: auto;
   max-width: 60%;
   overflow: hidden;
@@ -94,25 +93,26 @@
   /* box-shadow: 0px 0px 21px #8C5AF6; */
 }
 
-.arena-bar-storm__progress--storm--first, .arena-bar-storm__progress--storm--last{
+.arena-bar-storm__progress--storm--first,
+.arena-bar-storm__progress--storm--last {
   position: absolute;
   font-size: 12px;
   bottom: 1px;
   text-transform: initial;
-  max-width: 200%!important;
+  max-width: 200% !important;
 }
 
-.arena-bar-storm__progress--storm--first{
+.arena-bar-storm__progress--storm--first {
   left: 0;
-  
-  transform: translateX(-75%)
+
+  transform: translateX(-75%);
 }
-.arena-bar-storm__progress--storm--last{
+.arena-bar-storm__progress--storm--last {
   right: 0;
-  transform: translateX(75%)
+  transform: translateX(75%);
 }
 
-.bounce{
+.bounce {
   animation: bounce 2s infinite;
 }
 
@@ -122,15 +122,12 @@
   50%,
   80%,
   100% {
-    
     transform: translateY(0);
   }
   40% {
-    
     transform: translateY(-8px);
   }
   60% {
-    
     transform: translateY(-4px);
   }
 }

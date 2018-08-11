@@ -6,18 +6,16 @@ import cx from 'classnames';
 export default class ArenaBarStorm extends Component {
   render() {
     const { large, totalTeams, teamsInStorm, teamsEliminated, teamRank, teamState } = this.props;
-   
 
-
-    const teamPercent = 100 - ((teamRank - .5) / totalTeams) * 100;
-    const stormPercent = ((teamsInStorm) / totalTeams) * 100;
+    const teamPercent = 100 - ((teamRank - 0.5) / totalTeams) * 100;
+    const stormPercent = (teamsInStorm / totalTeams) * 100;
     const elimPercent = (teamsEliminated / totalTeams) * 100;
     const safePercent = 100 - elimPercent - stormPercent;
 
     const firstStormRank = totalTeams - teamsEliminated;
     let lastStormRank = firstStormRank - teamsInStorm;
-    if(lastStormRank < 2){
-      lastStormRank =2;
+    if (lastStormRank < 2) {
+      lastStormRank = 2;
     }
 
     const elimStyle = {
@@ -40,18 +38,37 @@ export default class ArenaBarStorm extends Component {
       <Spring from={{ hieght: '4px' }} to={{ height: !large ? '4px' : '20px' }}>
         {style => (
           <div className="arena-bar-storm" style={style}>
-            <div className={cx("arena-bar-storm__team", {bounce: large, storm: teamState === 'storm', alive: teamState === 'alive', winner: teamState === 'winner', eliminated: teamState === 'eliminated'})} style={{ left: `${teamPercent}%` }} />
+            <div
+              className={cx('arena-bar-storm__team', {
+                bounce: large,
+                storm: teamState === 'storm',
+                alive: teamState === 'alive',
+                winner: teamState === 'winner',
+                eliminated: teamState === 'eliminated'
+              })}
+              style={{ left: `${teamPercent}%` }}
+            />
             <div className="arena-bar-storm__progress">
               <div className="arena-bar-storm__progress--elim" style={elimStyle}>
-        {elimPercent < 7 ? null : elimPercent < 17 ? <span>elim</span>  : <span>eliminated</span>}</div>
+                {elimPercent < 7 ? null : elimPercent < 17 ? (
+                  <span>elim</span>
+                ) : (
+                  <span>eliminated</span>
+                )}
+              </div>
               <div className="arena-bar-storm__progress--storm" style={stormStyle}>
-              {teamsEliminated === 0 ? null : <span className="arena-bar-storm__progress--storm--first">{getGetOrdinal(firstStormRank)}</span>}
-              {stormPercent >= 11 ? <span>storm</span> : null}
-              <span className="arena-bar-storm__progress--storm--last">{getGetOrdinal(lastStormRank)}</span>
+                {teamsEliminated === 0 ? null : (
+                  <span className="arena-bar-storm__progress--storm--first">
+                    {getGetOrdinal(firstStormRank)}
+                  </span>
+                )}
+                {stormPercent >= 11 ? <span>storm</span> : null}
+                <span className="arena-bar-storm__progress--storm--last">
+                  {getGetOrdinal(lastStormRank)}
+                </span>
               </div>
               <div className="arena-bar-storm__progress--safe" style={safeStyle}>
-
-              {safePercent >= 8 ? <span>safe</span> : null}
+                {safePercent >= 8 ? <span>safe</span> : null}
               </div>
             </div>
           </div>
