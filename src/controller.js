@@ -120,7 +120,7 @@ class Controller {
             filter(d => d),
             map(date => {
               if (date !== 'ended') {
-                const now = Date.now() + 5000;
+                const now = Date.now() + 60 * 1000;
                 const then = Date.parse(date);
                 return now >= then;
               }
@@ -130,7 +130,7 @@ class Controller {
           )
         ),
         distinctUntilChanged(),
-        delayWhen(val => (val === 'normal' ? timer(5000) : empty()))
+        delayWhen(val => (val === 'normal' ? timer(10 * 1000) : empty()))
       )
       .subscribe(state => this.uiState.next(state));
   };
