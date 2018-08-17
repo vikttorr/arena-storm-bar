@@ -198,6 +198,10 @@ class Controller {
   };
 
   getNextCutoff = () => {
+    if (this._gettingNextCutoff) {
+      return Promise.resolve();
+    }
+    this._gettingNextCutoff = true;
     const tournament_id = (this.activeTournament.getValue() || {}).id;
     if (!tournament_id) {
       //this.shouldRender.next(false);
@@ -212,13 +216,19 @@ class Controller {
         this.nextStormDate.next(
           storm_date.state === 'ended' ? 'ended' : storm_date.activation_dttm
         );
+        this._gettingNextCutoff = false;
       })
       .catch(err => {
         console.error('failed to get the leaderboard', err);
+        this._gettingNextCutoff = false;
       });
   };
 
   getLeaderBoard = () => {
+    if (this._gettingLeaderboard) {
+      return Promise.resolve();
+    }
+    this._gettingLeaderboard = true;
     const tournament_id = (this.activeTournament.getValue() || {}).id;
     if (!tournament_id) {
       //this.shouldRender.next(false);
@@ -229,13 +239,19 @@ class Controller {
       .then(res => {
         const leaderboard = res.result;
         this.leaderBoard.next(leaderboard);
+        this._gettingLeaderboard = false;
       })
       .catch(err => {
         console.error('failed to get the leaderboard', err);
+        this._gettingLeaderboard = false;
       });
   };
 
   getTotalViewers = () => {
+    if (this._gettingTotalViewers) {
+      return Promise.resolve();
+    }
+    this._gettingTotalViewers = true;
     const currentLeaderBoard = this.leaderBoard.getValue();
 
     if (!currentLeaderBoard || !Array.isArray(currentLeaderBoard) || !currentLeaderBoard.length) {
@@ -247,20 +263,28 @@ class Controller {
       .then(res => {
         const viewers = res.result[0].live_viewers;
         this.liveViewers.next(viewers);
+        this._gettingTotalViewers = false;
       })
       .catch(err => {
         console.error('failed to getTotalViewers', err);
+        this._gettingTotalViewers = false;
       });
   };
 
   getTournament = () => {
+    if (this._gettingTournament) {
+      return Promise.resolve();
+    }
+    this._gettingTournament = true;
     return this.httpGet(`${feeds_url}/eligibility/tournament`)
       .then(res => {
         const tournament = res.result[0];
         this.activeTournament.next(tournament);
+        this._gettingTournament = false;
       })
       .catch(err => {
         console.error('failed to get the tournament_data', err);
+        this._gettingTournament = false;
         return Promise.reject(err);
       });
   };
