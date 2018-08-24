@@ -31,6 +31,8 @@ export default class ArenaBar extends Component {
       ? [...team.img_url]
       : team.usernames.map(username => this.getStreamerProfileImage(username));
 
+    const tournamentNotStarted = Date.parse(activeTournament.start_dttm) > Date.now();
+
     return (
       <div className="arena-bar-container">
         <div className="arena-bar">
@@ -44,21 +46,29 @@ export default class ArenaBar extends Component {
           />
           <CountDown
             restartOnDateChangeAfterComplete
-            date={nextStormDate}
+            date={tournamentNotStarted ? activeTournament.start_dttm : nextStormDate}
             renderer={({ hours, minutes, seconds, completed }) => {
               const stats = [];
-              if (nextStormDate !== 'ended') {
-                hours = parseInt(hours, 10);
-                if (hours) {
-                  minutes = `${hours * 60 + parseInt(minutes, 10)}`;
-                  minutes = minutes.length < 2 ? `0${minutes}` : minutes;
-                }
+              if (tournamentNotStarted) {
                 stats.push({
-                  label: 'Next Storm',
+                  label: `Tournament Starts${completed ? '' : ' In'}`,
                   value: completed ? 'Now' : `${minutes}:${seconds}`
                 });
+              } else {
+                if (nextStormDate !== 'ended') {
+                  hours = parseInt(hours, 10);
+                  if (hours) {
+                    minutes = `${hours * 60 + parseInt(minutes, 10)}`;
+                    minutes = minutes.length < 2 ? `0${minutes}` : minutes;
+                  }
+                  stats.push({
+                    label: 'Next Storm',
+                    value: completed ? 'Now' : `${minutes}:${seconds}`
+                  });
+                }
+                stats.push({ label: 'Live Viewers', value: liveViewers });
               }
-              stats.push({ label: 'Live Viewers', value: liveViewers });
+
               return <ArenaBarStats stats={stats} />;
             }}
           />
