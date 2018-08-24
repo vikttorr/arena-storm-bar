@@ -52,7 +52,7 @@ export default class ArenaBar extends Component {
               if (tournamentNotStarted) {
                 stats.push({
                   label: `Tournament Starts${completed ? '' : ' In'}`,
-                  value: completed ? 'Now' : `${minutes}:${seconds}`
+                  value: completed ? 'Now' : `${hours}:${minutes}:${seconds}`
                 });
               } else {
                 if (nextStormDate !== 'ended') {
