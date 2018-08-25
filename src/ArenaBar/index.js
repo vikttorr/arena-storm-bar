@@ -45,6 +45,7 @@ export default class ArenaBar extends Component {
             avatars={avatarImages}
           />
           <CountDown
+            daysInHours
             restartOnDateChangeAfterComplete
             date={tournamentNotStarted ? activeTournament.start_dttm : nextStormDate}
             renderer={({ hours, minutes, seconds, completed }) => {
