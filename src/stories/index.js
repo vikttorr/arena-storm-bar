@@ -34,6 +34,13 @@ const stats = [
   { label: 'Next storm', value: `01:20:30` }
 ];
 
+
+const TEST_TOURNAMENT = {
+  start_dttm: '2018-08-30T09:34:21.070Z',
+  image_url:''
+}
+
+
 storiesOf('ArenaBar', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
@@ -43,12 +50,12 @@ storiesOf('ArenaBar', module)
       eliminated: 'eliminated',
       winner: 'winner'
     };
-
+    
     const uiState = select('uiState', { none: 'none', storm: 'storm' }, 'none');
     const teamState = select('teamState', options, 'alive');
     const usernames = array('usernames', [...TEST_TEAM.usernames]);
 
-    return <ArenaBar stats={stats} team={{ ...TEST_TEAM, state: teamState, usernames }} />;
+    return <ArenaBar stats={stats} activeTournament={TEST_TOURNAMENT} team={{ ...TEST_TEAM, state: teamState, usernames }} />;
   })
   .add('Alive', () => <ArenaBar stats={stats} team={{ ...TEST_TEAM, state: 'alive' }} />)
   .add('Eliminated', () => <ArenaBar stats={stats} team={{ ...TEST_TEAM, state: 'eliminated' }} />)
