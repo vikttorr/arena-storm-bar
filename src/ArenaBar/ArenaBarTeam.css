@@ -5,14 +5,13 @@
   /* border-left: 1px solid rgba(0, 0, 0, 0.1); */
   display: flex;
   flex-direction: row;
-  background: #fff;
 }
 
 .arena-bar-team__rank {
-  width: 48px;
+  width: 80px;
   flex: 0 0 auto;
-  background: #1d181d;
-  color: #fff;
+  /* background: #1d181d;
+  color: #fff; */
   font-size: 20px;
   font-weight: 700;
   display: flex;
@@ -52,22 +51,17 @@
 
 .arena-bar-team__name--inner {
   /* width: 100%; */
-  display: flex;
+  display: inline;
   flex-direction: column;
   white-space: nowrap;
   max-width: 180px;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 100%;
+  width: 100%;
 }
 
 .arena-bar-team__name--item {
-  display: block;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  margin: auto 0;
+  display: inline-block;
   /* vertical-align: bottom; */
 }
 
@@ -79,7 +73,7 @@
 
 .arena-bar-team__avatar {
   position: relative;
-  width: 48px;
+  width: 65px;
   flex: 0 0 auto;
 }
 

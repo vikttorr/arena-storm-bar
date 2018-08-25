@@ -28,11 +28,16 @@ export default class ArenaBarTeam extends Component {
   };
 
   render() {
-    const { score, avatars, usernames, rank } = this.props;
+    const { score, avatars, usernames, rank, primaryColor } = this.props;
+
+    const scoreStyle = { color: primaryColor }
+    const rankStyle = {};
+
     const avatarClasses = cx('arena-bar-team__avatar', `avatars-${usernames.length}`);
     return (
       <div className="arena-bar-team">
         <span
+          style={rankStyle}
           className={cx('arena-bar-team__rank', {
             first: rank === 1,
             second: rank === 2,
@@ -51,7 +56,7 @@ export default class ArenaBarTeam extends Component {
         <div className="arena-bar-team__name">
           <span className="arena-bar-team__name--inner">{usernames && this.renderName()}</span>
         </div>
-        <div className="arena-bar-team__score">{score}</div>
+        <div style={scoreStyle} className="arena-bar-team__score">{score}</div>
       </div>
     );
   }

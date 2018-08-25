@@ -4,9 +4,10 @@ import './ArenaBarStats.css';
 
 export default class ArenaBarStats extends PureComponent {
   render() {
-    const { stats = [] } = this.props;
+    const { stats = [], isDark } = this.props;
+    const style = { backgroundColor: isDark ?'rgba(255,255,255,.1)' :  'rgba(0,0,0,.1)'};
     return (
-      <div className="arena-bar-stats">
+      <div style={style} className="arena-bar-stats">
         <ul className="arena-bar-stats__list">
           {stats.map((stat, i) => (
             <ArenaBarStatsItem key={`stat_${i}`} {...stat} />

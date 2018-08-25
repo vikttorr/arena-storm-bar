@@ -1,20 +1,17 @@
 .arena-bar-message {
   position: absolute;
-  bottom: 48px;
-  left: 100px;
+  bottom: 60px;
+  left: 160px;
   background: #894fc8;
-
-  /* width: 100%; */
   max-width: 519px;
-  border-radius: 4px 4px 0 0;
   z-index: -1;
   display: flex;
   flex-direction: row;
-  height: 28px;
+  height: 60px;
   overflow: hidden;
 }
 
-.arena-bar-messag .arena-bar-message__content {
+.arena-bar-message .arena-bar-message__content {
   display: flex;
   flex-direction: row;
   align-items: center;
