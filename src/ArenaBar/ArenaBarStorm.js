@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { Spring } from 'react-spring';
 import './ArenaBarStorm.css';
 import cx from 'classnames';
+// import tinyColor from 'tinycolor';
+
 
 export default class ArenaBarStorm extends Component {
   render() {
-    const { large, totalTeams, teamsInStorm, teamsEliminated, teamRank, teamState } = this.props;
+    const { large, totalTeams, teamsInStorm, teamsEliminated, teamRank, teamState, primaryColor } = this.props;
 
     const teamPercent = 100 - ((teamRank - 0.5) / totalTeams) * 100;
     const stormPercent = (teamsInStorm / totalTeams) * 100;
@@ -19,20 +21,21 @@ export default class ArenaBarStorm extends Component {
     }
 
     const elimStyle = {
-      // transform:'translate3d(-50%,0,0)'
+      background: primaryColor,
       width: `${elimPercent}%`
     };
     const stormStyle = {
-      // transform:'translate3d(-70%,0,0)'
+      background: primaryColor,
       left: `${elimPercent}%`,
       width: `${stormPercent}%`
     };
 
     const safeStyle = {
-      // transform:'translate3d(-70%,0,0)'
+      background: 'grey',
       left: `${elimPercent + stormPercent}%`,
       width: `${safePercent}%`
     };
+    
 
     return (
       <Spring from={{ hieght: '4px' }} to={{ height: !large ? '4px' : '20px' }}>

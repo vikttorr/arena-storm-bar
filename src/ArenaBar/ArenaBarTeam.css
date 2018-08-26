@@ -13,7 +13,7 @@
   /* background: #1d181d;
   color: #fff; */
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 800;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,6 +94,35 @@
   align-items: center;
   font-size: 24px;
   font-weight: 800;
+  position: relative;
+}
+
+.arena-bar-team__score--diff {
+  position: absolute;
+  width:30px;
+  height: 30px;
+  top: 50%;
+  left:50%;
+  font-size: 24px;
+  margin-left: -15px;
+  margin-top: -15px;
+  text-align: center;
+  animation: new-score 1s ease forwards;
+}
+
+@keyframes new-score {
+  0% {
+    transform: translate3d(0, -50%, 0);
+    opacity:1
+  }
+  60% {
+    transform: translate3d(0, -100%, 0);
+    opacity: 1
+  }
+  100% {
+    transform: translate3d(0, -200%, 0);
+    opacity: 0;
+  }
 }
 
 .avatars-2 .arena-bar-team__avatar--img:last-child {

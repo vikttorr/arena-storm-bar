@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
+// import tinyColor from 'tinycolor';
+
 import './ArenaBarTeam.css';
 
 export default class ArenaBarTeam extends Component {
@@ -7,16 +9,30 @@ export default class ArenaBarTeam extends Component {
 
   componentDidUpdate = prevProps => {
     if (this.props.rank && prevProps.rank !== this.props.rank) {
-      this.animateRank();
+      // this.animateRank();
     }
     if (this.props.score && prevProps.score !== this.props.score) {
-      this.animateScore();
+      const diff = this.props.score - prevProps.score;
+      this.animateScore(diff);
     }
   };
 
-  animateRank = () => {};
+  animateRank = () => {
+    
+  };
 
-  animateScore = () => {};
+  animateScore = diff => {
+    console.log("score diff", diff);
+      console.log('ref ->', this.refs.score);
+    const scoreEl = document.createElement('div');
+    scoreEl.className = 'arena-bar-team__score--diff'
+    scoreEl.innerHTML = `${diff}`;
+    this.refs.score.appendChild(scoreEl);
+    setTimeout(() => {
+      scoreEl.remove()
+    }, 1100)
+  };
+
 
   renderName = (name, i) => {
     const { usernames } = this.props;
@@ -30,8 +46,14 @@ export default class ArenaBarTeam extends Component {
   render() {
     const { score, avatars, usernames, rank, primaryColor } = this.props;
 
+    // const _primaryColor = tinyColor(primaryColor);
+    // const rankTextColor = tinyColor.mostReadable(primaryColor, ['#000', '#FFF'])
+
     const scoreStyle = { color: primaryColor }
-    const rankStyle = {};
+    const rankStyle = { 
+      backgroundColor: primaryColor,
+      color:'#000'
+    };
 
     const avatarClasses = cx('arena-bar-team__avatar', `avatars-${usernames.length}`);
     return (
@@ -56,7 +78,7 @@ export default class ArenaBarTeam extends Component {
         <div className="arena-bar-team__name">
           <span className="arena-bar-team__name--inner">{usernames && this.renderName()}</span>
         </div>
-        <div style={scoreStyle} className="arena-bar-team__score">{score}</div>
+        <div ref={'score'} style={scoreStyle} className="arena-bar-team__score">{score}</div>
       </div>
     );
   }

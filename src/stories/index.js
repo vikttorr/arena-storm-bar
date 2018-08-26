@@ -3,8 +3,10 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 import backgrounds from "@storybook/addon-backgrounds";
-import { withKnobs, array, color, boolean, number, select } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
+import { withKnobs, text, array, color, boolean, number, select } from '@storybook/addon-knobs';
+
+
 
 import ArenaBar from '../ArenaBar';
 import ArenaBarTeam from '../ArenaBar/ArenaBarTeam';
@@ -59,20 +61,30 @@ storiesOf('ArenaBar', module)
       winner: 'winner'
     };
 
+    const image_url = text('logo', 'https://a.imgdropt.com/image/8648c2dd-3810-4811-ac25-7ba47edc40ac')
     const uiState = select('uiState', { none: 'none', storm: 'storm' }, 'none');
-    const teamState = select('teamState', options, 'alive');
+    const state = select('state', options, 'alive');
     const usernames = array('usernames', [...TEST_TEAM.usernames]);
     const primaryColor = color('primaryColor', '#9DCF12')
     const backgroundColor = select('backgroundColor', { '#FFF': '#FFF', '#000': '#000' }, '#FFF');
     const rank = number('rank', 5);
+    const score = number('score', 5);
+
+    const teamsInStorm = number('teamsInStorm', 5);
+    const teamsEliminated = number('teamsEliminated', 10)
+    const totalTeams = number('totalTeams', 20)
 
     return <StoryElement width={1186}>
     <ArenaBar 
+      uiState={uiState}
       primaryColor={primaryColor}
       backgroundColor={backgroundColor}
-      activeTournament={activeTournament}
+      activeTournament={{...activeTournament, image_url}}
       stats={stats}
-      team={{ ...TEST_TEAM, state: teamState, usernames, rank }}
+      totalTeams={totalTeams}
+      teamsEliminated={teamsEliminated}
+      teamsInStorm={teamsInStorm}
+      team={{ ...TEST_TEAM, state, usernames, rank, score }}
     />;
     </StoryElement>
   })

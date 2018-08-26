@@ -6,14 +6,13 @@
 }
 
 .arena-bar-logo__img {
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   display: block;
   /* background: teal; */
   position: absolute;
-  bottom: 0;
-  left: 0;
-  background: red;
+  bottom: 10px;
+  left: 10px;
   border: none;
   outline: none;
   object-fit: contain;
