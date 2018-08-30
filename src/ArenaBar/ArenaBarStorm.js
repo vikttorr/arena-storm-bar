@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Spring } from 'react-spring';
 import './ArenaBarStorm.css';
 import cx from 'classnames';
-// import tinyColor from 'tinycolor';
+import Color from 'color'
 
 
 export default class ArenaBarStorm extends Component {
   render() {
-    const { large, totalTeams, teamsInStorm, teamsEliminated, teamRank, teamState, primaryColor } = this.props;
+    const { isDark, large, totalTeams, teamsInStorm, teamsEliminated, teamRank, teamState, primaryColor } = this.props;
 
     const teamPercent = 100 - ((teamRank - 0.5) / totalTeams) * 100;
     const stormPercent = (teamsInStorm / totalTeams) * 100;
@@ -20,22 +20,35 @@ export default class ArenaBarStorm extends Component {
       lastStormRank = 2;
     }
 
+    // colors
+    const elimColor = Color(primaryColor).darken(0.1).hex()
+    const stripe1 = Color(primaryColor).darken(0.2).hex()
+    const stripe2 = Color(primaryColor).darken(0.4).hex()
+    const gradient = `repeating-linear-gradient(45deg, ${stripe1}, ${stripe1} 5px, ${stripe2} 5px, ${stripe2} 10px)`
+    console.log('grad', gradient);
     const elimStyle = {
-      background: primaryColor,
+      background: elimColor,
       width: `${elimPercent}%`
     };
     const stormStyle = {
-      background: primaryColor,
+      background:gradient,
       left: `${elimPercent}%`,
       width: `${stormPercent}%`
     };
 
     const safeStyle = {
-      background: 'grey',
+      background: 'transparent',
       left: `${elimPercent + stormPercent}%`,
       width: `${safePercent}%`
     };
     
+    const barStyle= {
+      background: isDark ? `rgba(0,0,0,.5)` : `rgba(255,255,255,0.5)`
+    }
+
+    const trackStyle = {
+      background: isDark ? `rgba(0,0,0,.5)` : `rgba(255,255,255,0.5)`
+    }
 
     return (
       <Spring from={{ hieght: '4px' }} to={{ height: !large ? '4px' : '20px' }}>
@@ -49,9 +62,9 @@ export default class ArenaBarStorm extends Component {
                 winner: teamState === 'winner',
                 eliminated: teamState === 'eliminated'
               })}
-              style={{ left: `${teamPercent}%` }}
+              style={{ left: `${teamPercent}%`, borderTopColor:isDark ? '#FFF' : '#000' }}
             />
-            <div className="arena-bar-storm__progress">
+            <div className="arena-bar-storm__progress" style={trackStyle}>
               <div className="arena-bar-storm__progress--elim" style={elimStyle}>
                 {elimPercent < 7 ? null : elimPercent < 17 ? (
                   <span>elim</span>

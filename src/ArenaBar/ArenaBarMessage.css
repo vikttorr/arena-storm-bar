@@ -1,78 +1,37 @@
 .arena-bar-message {
   position: absolute;
-  bottom: 60px;
+  bottom: 56px;
   left: 160px;
-  background: #894fc8;
+  /* width: 400px; */
+  background: red;
   max-width: 519px;
   z-index: -1;
   display: flex;
   flex-direction: row;
-  height: 60px;
+  height: 56px;
   overflow: hidden;
-}
-
-.arena-bar-message .arena-bar-message__content {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  color: #fff;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.arena-bar-message.storm .arena-bar-message__content--state {
-  background: repeating-linear-gradient(45deg, #894fc8, #894fc8 4px, #a833e9 4px, #a833e9 8px);
-}
-
-.arena-bar-message.eliminated {
-  background: #201b20;
-}
-
-.arena-bar-message.winner {
-  background: #fdc823;
-}
-
-.arena-bar-message.eliminated .arena-bar-message__content--state {
-  background: rgba(0, 0, 0, 0.1);
-}
-
-.arena-bar-message__content--state {
-  /* background: rgba(0, 0, 0, 0.1); */
-  height: 100%;
-  flex: 0 0 auto;
-  padding: 0 25px;
-  padding-right: 35px;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
   justify-content: center;
-  /* background: repeating-linear-gradient(45deg, #894fc8, #894fc8 4px, #a833e9 4px, #a833e9 8px); */
+  align-items: center;
 }
 
-.arena-bar-message__content--state__text {
-  font-size: 25px;
-  color: #fff;
-  font-family: 'Fortnite';
-  line-height: 0.8;
-  flex: 0 0 auto;
-  padding-top: 5px;
+
+.arena-bar-message__content {
+  font-weight: 600;
+  font-size: 22px;
+  padding: 0 40px
 }
 
-.arena-bar-message__content--state__icon {
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
+.arena-bar-message__content b {
+  margin:0 10px;
+  font-weight:800;
+  /* animation: blink 2s ease infinite; */
 }
 
-.arena-bar-message__content--state__icon.skull {
-  width: 20px;
-  height: 20px;
-}
-
-.arena-bar-message__content--rotating-msg {
-  flex: 1;
-  /* background: orange; */
-  text-align: center;
-  font-weight: 700;
+@keyframes blink {
+  0%, 100%{
+    opacity: 0.3;
+  }
+  50%{
+    opacity: 1;
+  } 
 }

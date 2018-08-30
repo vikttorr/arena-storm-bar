@@ -16,6 +16,7 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  font-family: 'Inter UI', sans-serif;
 }
 
 .arena-bar-container {
@@ -30,12 +31,11 @@ body {
 }
 
 .arena-bar {
-  font-family: 'Inter UI', sans-serif;
   display: flex;
   flex: 0 0 auto;
   background: #fff;
   width: 100%;
-  height: 60px;
+  height: 56px;
   position: relative;
   flex-direction: row;
   /* border-top-left-radius: 5px;

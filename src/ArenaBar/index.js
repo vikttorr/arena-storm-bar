@@ -12,7 +12,7 @@ import ArenaBarStats from './ArenaBarStats';
 import ArenaBarStorm from './ArenaBarStorm';
 import ArenaBarBackground from './ArenaBarBackground';
 
-const parseTime = (hours, minutes) => {
+const parseTime = (hours, minutes, seconds) => {
   hours = parseInt(hours, 10);
   if (hours) {
     minutes = `${hours * 60 + parseInt(minutes, 10)}`;
@@ -40,10 +40,11 @@ export default class ArenaBar extends Component {
         if (nextStormDate !== 'ended') {
           stats.push({
             label: 'Next Storm',
-            value: completed ? 'Now' : parseTime(hours, minutes)
+            // value:`30:00`
+            value: completed ? 'Now' : parseTime(hours, minutes, seconds)
           });
         }
-        stats.push({ label: 'Live Viewers', value: liveViewers });
+        stats.push({ label: 'Viewers', value: liveViewers });
         return <ArenaBarStats isDark={isDark} stats={stats} />;
       }}
     />
@@ -51,8 +52,8 @@ export default class ArenaBar extends Component {
 
   render() {
     const {
-      primaryColor,
-      backgroundColor,
+      primaryColor = '#B636F3',
+      backgroundColor = '#FFF',
       team,
       activeTournament,
       uiState,
@@ -72,8 +73,12 @@ export default class ArenaBar extends Component {
       color: isDark ? '#FFF' : '#000'
     }
 
+    const containerStyle = {
+       color: isDark ? '#FFF' : '#000'
+    }
+
     return (
-      <div className="arena-bar-container">
+      <div className="arena-bar-container" style={containerStyle}>
         <div className="arena-bar" style={style}>
           <ArenaBarLogo primaryColor={primaryColor} image={activeTournament.image_url} />
           <ArenaBarTeam
@@ -83,10 +88,17 @@ export default class ArenaBar extends Component {
             name={team.name}
             usernames={team.usernames}
             avatars={avatarImages}
+            state={team.state}
+            isDark={isDark}
           />
           {this.renderStats(isDark)}
-          <ArenaBarMessage state={team.state} visible={team.state !== 'alive'} />
         </div>
+          <ArenaBarMessage 
+            primaryColor={primaryColor}
+            isDark={isDark} 
+            state={team.state} 
+            visible={team.state !== 'alive'} 
+          />        
         <ArenaBarStorm
           primaryColor={primaryColor}
           teamState={team.state}
@@ -95,6 +107,7 @@ export default class ArenaBar extends Component {
           teamsInStorm={teamsInStorm}
           teamsEliminated={teamsEliminated}
           teamRank={team.rank}
+          isDark={isDark}
         />
         <ArenaBarBackground state={team.state} />
       </div>

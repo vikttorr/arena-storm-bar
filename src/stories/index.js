@@ -3,8 +3,8 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 import backgrounds from "@storybook/addon-backgrounds";
-import centered from '@storybook/addon-centered';
-import { withKnobs, text, array, color, boolean, number, select } from '@storybook/addon-knobs';
+// import centered from '@storybook/addon-centered';
+import { withKnobs, text, array, color, date, boolean, number, select } from '@storybook/addon-knobs';
 
 
 
@@ -50,7 +50,7 @@ const activeTournament = {
 
 
 storiesOf('ArenaBar', module)
-  .addDecorator(centered)
+  // .addDecorator(centered)
   .addDecorator(backgrounds(storyBackgrounds))
   .addDecorator(withKnobs)
   .add('Default', () => {
@@ -60,6 +60,9 @@ storiesOf('ArenaBar', module)
       eliminated: 'eliminated',
       winner: 'winner'
     };
+
+    const nextStormDate = date('nextStormDate', null);
+    const liveViewers = number('liveViewers', 100000);
 
     const image_url = text('logo', 'https://a.imgdropt.com/image/8648c2dd-3810-4811-ac25-7ba47edc40ac')
     const uiState = select('uiState', { none: 'none', storm: 'storm' }, 'none');
@@ -73,6 +76,7 @@ storiesOf('ArenaBar', module)
     const teamsInStorm = number('teamsInStorm', 5);
     const teamsEliminated = number('teamsEliminated', 10)
     const totalTeams = number('totalTeams', 20)
+
 
     return <StoryElement width={1186}>
     <ArenaBar 

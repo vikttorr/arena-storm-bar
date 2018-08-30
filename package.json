@@ -6,6 +6,7 @@
   "homepage": "./",
   "dependencies": {
     "bebo-sdk": "git+ssh://git@github.com/bebo/bebo-sdk.git#v2",
+    "color": "^3.0.0",
     "react": "16.4.2",
     "react-countdown-now": "https://github.com/jnsdls/react-countdown",
     "react-dom": "16.4.2",
