@@ -62,6 +62,7 @@ storiesOf('ArenaBar', module)
       winner: 'winner'
     };
 
+    const start_dttm = date('start_dttm', null);
     const nextStormDate = date('nextStormDate', null);
     const liveViewers = number('liveViewers', 100000);
 
@@ -84,7 +85,7 @@ storiesOf('ArenaBar', module)
       uiState={uiState}
       primaryColor={primaryColor}
       backgroundColor={backgroundColor}
-      activeTournament={{...TEST_TOURNAMENT, image_url}}
+      activeTournament={{...TEST_TOURNAMENT, image_url, start_dttm}}
       stats={stats}
       totalTeams={totalTeams}
       nextStormDate={nextStormDate}
