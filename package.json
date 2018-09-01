@@ -1,7 +1,7 @@
 {
-  "name": "arena-bottom-bar",
+  "name": "arena-storm-bar",
   "version": "0.0.2",
-  "repository": "bebo-rooms/arena-bottom-bar",
+  "repository": "bebo-rooms/arena-storm-bar",
   "private": true,
   "homepage": "./",
   "dependencies": {
