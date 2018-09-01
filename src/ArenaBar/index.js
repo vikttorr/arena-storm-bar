@@ -27,26 +27,48 @@ export default class ArenaBar extends Component {
     return `https://feeds.bebo.com/image/twitch?twitch_username=${name}`;
   };
 
-
   renderStats = isDark => {
-    const { nextStormDate, liveViewers } = this.props;
-    const streamStarted = false;
-    const startingTime = Date.now() + 100000
-      return  <CountDown
-        restartOnDateChangeAfterComplete
-        date={nextStormDate}
-        renderer={({ hours, minutes, seconds, completed }) => {
+    const { nextStormDate, liveViewers, activeTournament } = this.props;
+    const tournamentNotStarted = Date.parse(activeTournament.start_dttm) > Date.now();
+    return <CountDown
+    daysInHours
+    restartOnDateChangeAfterComplete
+    date = {
+      tournamentNotStarted ? activeTournament.start_dttm : nextStormDate
+    }
+    renderer={
+      ({
+        hours,
+        minutes,
+        seconds,
+        completed
+      }) => {
         const stats = [];
-        if (nextStormDate !== 'ended') {
+        if (tournamentNotStarted) {
           stats.push({
-            label: 'Next Storm',
-            // value:`30:00`
-            value: completed ? 'Now' : parseTime(hours, minutes, seconds)
+            label: `Tournament Starts${completed ? '' : ' In'}`,
+            value: completed ? 'Now' : `${hours}:${minutes}:${seconds}`
+          });
+        } else {
+          if (nextStormDate !== 'ended') {
+            hours = parseInt(hours, 10);
+            if (hours) {
+              minutes = `${hours * 60 + parseInt(minutes, 10)}`;
+              minutes = minutes.length < 2 ? `0${minutes}` : minutes;
+            }
+            stats.push({
+              label: 'Next Storm',
+              value: completed ? 'Now' : `${minutes}:${seconds}`
+            });
+          }
+          stats.push({
+            label: 'Live Viewers',
+            value: liveViewers
           });
         }
-        stats.push({ label: 'Viewers', value: liveViewers });
-        return <ArenaBarStats isDark={isDark} stats={stats} />;
-      }}
+        return <ArenaBarStats stats={stats}/>;
+      }
+    }
     />
   }
 
@@ -92,6 +114,7 @@ export default class ArenaBar extends Component {
             isDark={isDark}
           />
           {this.renderStats(isDark)}
+          <ArenaBarMessage state={team.state} visible={team.state !== 'alive'} />
         </div>
           <ArenaBarMessage 
             primaryColor={primaryColor}
@@ -109,7 +132,7 @@ export default class ArenaBar extends Component {
           teamRank={team.rank}
           isDark={isDark}
         />
-        <ArenaBarBackground state={team.state} />
+        {/* <ArenaBarBackground state={team.state} /> */}
       </div>
     );
   }

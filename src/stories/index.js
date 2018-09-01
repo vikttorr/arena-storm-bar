@@ -43,10 +43,11 @@ const stats = [
   { label: 'Next storm', value: `01:20:30` }
 ];
 
-const activeTournament = {
-  image_url: ''
-}
 
+const TEST_TOURNAMENT = {
+  start_dttm: '2018-08-30T09:34:21.070Z',
+  image_url:''
+}
 
 
 storiesOf('ArenaBar', module)
@@ -83,11 +84,13 @@ storiesOf('ArenaBar', module)
       uiState={uiState}
       primaryColor={primaryColor}
       backgroundColor={backgroundColor}
-      activeTournament={{...activeTournament, image_url}}
+      activeTournament={{...TEST_TOURNAMENT, image_url}}
       stats={stats}
       totalTeams={totalTeams}
+      nextStormDate={nextStormDate}
       teamsEliminated={teamsEliminated}
       teamsInStorm={teamsInStorm}
+      liveViewers={liveViewers}
       team={{ ...TEST_TEAM, state, usernames, rank, score }}
     />;
     </StoryElement>
