@@ -1,15 +1,8 @@
 {
-<<<<<<< HEAD
-  "main.css": "static/css/main.a4f45faa.css",
-  "main.css.map": "static/css/main.a4f45faa.css.map",
-  "main.js": "static/js/main.cf313276.js",
-  "main.js.map": "static/js/main.cf313276.js.map",
-=======
-  "main.css": "static/css/main.c22f0fe3.css",
-  "main.css.map": "static/css/main.c22f0fe3.css.map",
-  "main.js": "static/js/main.96ea1881.js",
-  "main.js.map": "static/js/main.96ea1881.js.map",
->>>>>>> v2
+  "main.css": "static/css/main.7d1ec14b.css",
+  "main.css.map": "static/css/main.7d1ec14b.css.map",
+  "main.js": "static/js/main.dc07da8f.js",
+  "main.js.map": "static/js/main.dc07da8f.js.map",
   "static/media/fortnite.otf": "static/media/fortnite.800e985f.otf",
   "static/media/lightning_1.png": "static/media/lightning_1.ae7d5911.png",
   "static/media/lightning_2.png": "static/media/lightning_2.f1e17f18.png",
